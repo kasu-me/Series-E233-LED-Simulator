@@ -1,3 +1,7 @@
+<?php
+	// data.jsonのパス
+	$dataFilePath = $_SERVER['DOCUMENT_ROOT'] . '/resources/data.json';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -28,13 +32,11 @@
 	<DIV id="control-panel">
 		<DIV id="selector-area">
 			<?php
-			// data.jsonのパス
-			$dataFile = $_SERVER['DOCUMENT_ROOT'] . '/resources/data.json';
 
 			// data.jsonを読み込む
 			$data = [];
-			if (file_exists($dataFile)) {
-				$json = file_get_contents($dataFile);
+			if (file_exists($dataFilePath)) {
+				$json = file_get_contents($dataFilePath);
 				$data = json_decode($json, true);
 			}
 
@@ -112,5 +114,7 @@
 	<div id="color-bar" class="accessory-bar"></div>
 	<div id="bottom-bar1" class="accessory-bar"></div>
 	<div id="bottom-bar2" class="accessory-bar"></div>
+
+	<div id="file-time"><?php echo filemtime($dataFilePath); ?></div>
 </body>
 </html>
