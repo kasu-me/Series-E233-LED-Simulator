@@ -20,7 +20,6 @@
 	$firstParamKey="";
 	
 	foreach ($_GET as $key => $value) {
-		$imgNo="";
 		$imgId=$key;
 		if(($key!="shu"&&$key!="iki"&&$paramIndex==0) || $key=="shu"){
 			$firstParamKey=$key;
