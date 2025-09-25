@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-	const imageVersion = "1758629387";
+	const imageVersion = "1758629388";
 	const url = new URL(window.location.href);
 	const pathName = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
 
