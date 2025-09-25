@@ -200,9 +200,3 @@ p:last-child {
 		background-color: #555555;
 	}
 }
-
-@media screen and (max-width: 600px) {
-	#artcle-area {
-		font-size: 1pt;
-	}
-}
