@@ -38,24 +38,24 @@
 				$sx = imagesx($img2);
 				$sy = imagesy($img2);
 				imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
-				imagecopyresized($img, $img2, 108, -99*((int)substr($imgId,1,3))+32, 0, 0, $sx, $sy,128,32); // 合成する
+				imagecopyresized($img, $img2, 109, -99*((int)substr($imgId,1,3))+32, 0, 0, $sx*3, $sy*3, $sx, $sy); // 合成する
 				imagedestroy($img2); // 破棄
 				//大きい種別画像の場合はこれ以外を表示しないためbreak
 				break;
 			}
 			//小さい種別画像
 			else{
-				$img2 = imagecreatefrompng("../led/ledtypeS".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL)+1,3,0,STR_PAD_LEFT).".png");
+				$img2 = imagecreatefrompng("../led/ledtypeS".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL),3,0,STR_PAD_LEFT).".png");
 		 		// 合成する画像のサイズを取得
 				$sx = imagesx($img2);
 				$sy = imagesy($img2);
 				imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
-				imagecopyresized($img, $img2, 109, 32, (51*$imgId)-($imgId%MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL), 0, 144, 96, 48, 32); // 合成する
+				imagecopyresized($img, $img2, 109, 32, 51*($imgId%MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL), 0, 144, 96, 48, 32); // 合成する
 				imagedestroy($img2); // 破棄
 			}
 		}else if(($key!="shu"&&$key!="iki"&&$paramIndex==1) || $key=="iki"){
 			//2番目のパラメータがcolの場合は画像IDを最初のキーにする
-			if(paramIndex==1 && startsWith($imgId,"col")){
+			if($paramIndex==1 && startsWith($imgId,"col")){
 				$imgId=$firstParamKey;
 			}
 			//新方式対応の変換(旧方式はキーをそのまま使うため変換しない)
