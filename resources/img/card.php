@@ -2,7 +2,7 @@
 	header("Content-Type: image/png");
 
 	function startsWith($haystack, $needle) {
-    return (strpos($haystack, $needle) === 0);
+ 	   return (strpos($haystack, $needle) === 0);
 	}
 
 	$img = imagecreatetruecolor(600, 314);
@@ -33,25 +33,25 @@
 			}
 			//大きい種別画像
 			if(startsWith($imgId,"C")){
-		 		$img2 = imagecreatefrompng("../led/ledtypeA000.png");
-		 		// 合成する画像のサイズを取得
-				$sx = imagesx($img2);
-				$sy = imagesy($img2);
+				$bigShubetsuImg = imagecreatefrompng("../led/ledtypeA000.png");
+				// 合成する画像のサイズを取得
+				$imgWidth = imagesx($bigShubetsuImg);
+				$imgHeight = imagesy($bigShubetsuImg);
 				imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
-				imagecopyresized($img, $img2, 109, -99*((int)substr($imgId,1,3))+32, 0, 0, $sx*3, $sy*3, $sx, $sy); // 合成する
-				imagedestroy($img2); // 破棄
+				imagecopyresized($img, $bigShubetsuImg, 109, -99*((int)substr($imgId,1,3))+32, 0, 0, $imgWidth*3, $imgHeight*3, $imgWidth, $imgHeight); // 合成する
+				imagedestroy($bigShubetsuImg); // 破棄
 				//大きい種別画像の場合はこれ以外を表示しないためbreak
 				break;
 			}
 			//小さい種別画像
 			else{
-				$img2 = imagecreatefrompng("../led/ledtypeS".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL),3,0,STR_PAD_LEFT).".png");
-		 		// 合成する画像のサイズを取得
-				$sx = imagesx($img2);
-				$sy = imagesy($img2);
+				$smallShubetsuImg = imagecreatefrompng("../led/ledtypeS".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL),3,0,STR_PAD_LEFT).".png");
+				// 合成する画像のサイズを取得
+				$imgWidth = imagesx($smallShubetsuImg);
+				$imgHeight = imagesy($smallShubetsuImg);
 				imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
-				imagecopyresized($img, $img2, 109, 32, 51*($imgId%MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL), 0, 144, 96, 48, 32); // 合成する
-				imagedestroy($img2); // 破棄
+				imagecopyresized($img, $smallShubetsuImg, 109, 32, 51*($imgId%MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL), 0, 144, 96, 48, 32); // 合成する
+				imagedestroy($smallShubetsuImg); // 破棄
 			}
 		}else if(($key!="shu"&&$key!="iki"&&$paramIndex==1) || $key=="iki"){
 			//2番目のパラメータがcolの場合は画像IDを最初のキーにする
@@ -62,13 +62,13 @@
 			if($key=="iki"){
 				$imgId=$value;
 			}
-	 		$img2 = imagecreatefrompng("../led/ledimgA".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_IKISAKI),3,0,STR_PAD_LEFT).".png");
-	 		// 合成する画像のサイズを取得
-			$sx = imagesx($img2);
-			$sy = imagesy($img2);
+			$ikisakiImg = imagecreatefrompng("../led/ledimgA".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_IKISAKI),3,0,STR_PAD_LEFT).".png");
+			// 合成する画像のサイズを取得
+			$imgWidth = imagesx($ikisakiImg);
+			$imgHeight = imagesy($ikisakiImg);
 			imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
-			imagecopyresized($img, $img2, 252, -99*($imgId%MAKU_COUNT_PER_IMAGE_IKISAKI)+32, 0, 0, $sx*3, $sy*3, $sx, $sy); // 合成する
-			imagedestroy($img2); // 破棄
+			imagecopyresized($img, $ikisakiImg, 252, -99*($imgId%MAKU_COUNT_PER_IMAGE_IKISAKI)+32, 0, 0, $imgWidth*3, $imgHeight*3, $imgWidth, $imgHeight); // 合成する
+			imagedestroy($ikisakiImg); // 破棄
 		}else if($imgId=="col"){
 			//色の場合は後で処理するためここでは何もしない
 		}
@@ -78,16 +78,16 @@
 	// 正面画像
 	array_push($overlayImageFiles,"front_twitter.png");
 	foreach($overlayImageFiles as $fileName){
- 		$img2 = imagecreatefrompng($fileName); // 合成する画像を取り込む
+		$overlayImg = imagecreatefrompng($fileName); // 合成する画像を取り込む
 
- 		// 合成する画像のサイズを取得
-		$sx = imagesx($img2);
-		$sy = imagesy($img2);
+		// 合成する画像のサイズを取得
+		$imgWidth = imagesx($overlayImg);
+		$imgHeight = imagesy($overlayImg);
 
 		imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
-		imagecopy($img, $img2, 0, 0, 0, 0, $sx, $sy); // 合成する
+		imagecopy($img, $overlayImg, 0, 0, 0, 0, $imgWidth, $imgHeight); // 合成する
 
-		imagedestroy($img2); // 破棄
+		imagedestroy($overlayImg); // 破棄
 	}
 
 	//色
