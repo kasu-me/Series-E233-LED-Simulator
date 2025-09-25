@@ -241,34 +241,37 @@ window.addEventListener("load", () => {
 	function setRandomIkiToSelectBox() {
 		const randomIkiId = Math.floor(Math.random() * (maxIkiId)) + 1;
 		ikiSelectBox.value = randomIkiId;
+		return randomIkiId;
 	}
 	function setRandomShuToSelectBox() {
 		const randomShuId = Math.floor(Math.random() * (maxShuSmallId)) + 1;
 		shuSelectBox.value = randomShuId;
+		return randomShuId;
 	}
 	function setRandomColorToInputBox() {
 		const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
 		colorInputBox.value = randomColor;
+		return randomColor;
 	}
 
 	document.getElementById("random-ikisaki-button").addEventListener("click", () => {
-		setRandomIkiToSelectBox();
-		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+		const ikiId = setRandomIkiToSelectBox();
+		displayLED(ikiId, shuSelectBox.value, colorInputBox.value);
 	});
 	document.getElementById("random-shubetsu-button").addEventListener("click", () => {
-		setRandomShuToSelectBox();
-		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+		const shuId = setRandomShuToSelectBox();
+		displayLED(ikiSelectBox.value, shuId, colorInputBox.value);
 	});
 	document.getElementById("random-shubetsu-ikisaki-button").addEventListener("click", () => {
-		setRandomIkiToSelectBox();
-		setRandomShuToSelectBox();
-		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+		const ikiId = setRandomIkiToSelectBox();
+		const shuId = setRandomShuToSelectBox();
+		displayLED(ikiId, shuId, colorInputBox.value);
 	});
 	document.getElementById("random-shubetsu-ikisaki-color-button").addEventListener("click", () => {
-		setRandomIkiToSelectBox();
-		setRandomShuToSelectBox();
+		const ikiId = setRandomIkiToSelectBox();
+		const shuId = setRandomShuToSelectBox();
 		setRandomColorToInputBox();
-		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+		displayLED(ikiId, shuId, colorInputBox.value);
 	});
 	document.getElementById("random-color-button").addEventListener("click", () => {
 		setRandomColorToInputBox();
