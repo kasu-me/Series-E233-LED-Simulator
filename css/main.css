@@ -265,7 +265,7 @@ div#file-time {
 		& #led-controller-area {
 			margin-bottom: 1.0rem;
 			display: block;
-			font-size: 4vw;
+			font-size: 5vw;
 
 			&>* {
 				margin-right: 0;
@@ -279,8 +279,9 @@ div#file-time {
 
 					& .led-control-input-box {
 						width: 100%;
-						padding-right: 3rem;
-						font-size: 4vw;
+						padding-left: 0.3em;
+						font-size: 5vw;
+
 					}
 
 					& .led-control-input-pull-down {
@@ -290,8 +291,9 @@ div#file-time {
 						margin-bottom: 0.5rem;
 						top: 0;
 						right: 0;
-						padding: 0.1rem 0.5rem;
-						padding-left: 20vw;
+						padding: 0.1rem;
+						padding-left: 18vw;
+						padding-right: 0.3em;
 						cursor: pointer;
 						color: #444;
 					}
