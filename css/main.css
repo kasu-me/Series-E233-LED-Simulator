@@ -129,10 +129,15 @@ p:last-child {
 				width: 15rem;
 			}
 
-			& #color-select-box {
-				height: 10.1rem;
-				width: 10rem;
-				cursor: pointer;
+			&#color-container {
+				display: flex;
+				gap: 1.0rem;
+
+				& #color-select-box {
+					height: 10.1rem;
+					width: 10rem;
+					cursor: pointer;
+				}
 			}
 		}
 
@@ -255,6 +260,8 @@ div#file-time {
 	}
 
 	#control-panel {
+		padding: 2.0rem;
+
 		& #led-controller-area {
 			margin-bottom: 1.0rem;
 			display: block;
@@ -302,9 +309,19 @@ div#file-time {
 					left: 0;
 				}
 
-				& #color-select-box {
-					height: 1.75em;
-					font-size: 4vw;
+				&#color-container {
+					margin-top: 2.5rem;
+					margin-bottom: 2.5rem;
+
+					& #color-select-box,
+					& #no-color-button {
+						width: 50%;
+						font-size: 4vw;
+					}
+
+					& #color-select-box {
+						height: 2em;
+					}
 				}
 			}
 		}
