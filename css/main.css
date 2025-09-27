@@ -325,5 +325,29 @@ div#file-time {
 				}
 			}
 		}
+
+		& .button-area {
+			display: flex;
+			justify-content: space-between;
+
+			&>button {
+				flex-grow: 1;
+				font-size: 2vw;
+				padding: 0.5rem;
+				padding-bottom: 0;
+			}
+		}
+
+
+		& #animations-container {
+			& #animation-controls {
+				font-size: 3vw;
+				margin-bottom: 1.0em;
+
+				& button {
+					font-size: 2.5vw;
+				}
+			}
+		}
 	}
 }
