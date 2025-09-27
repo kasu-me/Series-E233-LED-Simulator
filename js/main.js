@@ -259,6 +259,14 @@ window.addEventListener("DOMContentLoaded", () => {
 			const color = colorInputBox.value;
 			displayLED(ikiId, shuId, color, true);
 		});
+		elm.addEventListener("blur", () => {
+			console.log("unfocus");
+			const ikiText = ikiTextBox.value;
+			const shuText = shuTextBox.value;
+
+			ikiTextBox.value = ([...ikiSelectBox.options].find(opt => opt.text === ikiText) != null) ? ikiTextBox.value : (ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "");
+			shuTextBox.value = ([...shuSelectBox.options].find(opt => opt.text === shuText) != null) ? shuTextBox.value : (shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "");
+		});
 	});
 	//プルダウン(スマホ用)
 	document.querySelectorAll(".led-control-input-pull-down").forEach(elm => {
