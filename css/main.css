@@ -85,7 +85,7 @@ p:last-child {
 	position: relative;
 	width: 100%;
 
-	& #selector-area {
+	& #led-controller-area {
 		margin-bottom: 2.0rem;
 		display: flex;
 
@@ -104,7 +104,7 @@ p:last-child {
 				width: 15rem;
 			}
 
-			& #select-color {
+			& #color-select-box {
 				height: 10.1rem;
 				width: 10rem;
 				cursor: pointer;

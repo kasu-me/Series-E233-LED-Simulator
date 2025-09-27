@@ -228,7 +228,7 @@ window.addEventListener("load", () => {
 	const animation = new Animation(document.getElementById("animation-list-container"), document.getElementById("animation-controls"));
 
 	//各種コントロール要素イベント付与
-	const colorInputBox = document.getElementById("select-color");
+	const colorInputBox = document.getElementById("color-select-box");
 
 	//コントローライベント
 	//セレクトボックス
