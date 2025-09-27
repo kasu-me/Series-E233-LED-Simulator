@@ -232,7 +232,7 @@ window.addEventListener("load", () => {
 
 	//コントローライベント
 	//セレクトボックス
-	document.querySelectorAll(".led-control-select-box").forEach(elm => {
+	document.querySelectorAll(".led-control-box").forEach(elm => {
 		elm.addEventListener("input", () => {
 			const ikiId = ikiSelectBox.value;
 			const shuId = shuSelectBox.value;
