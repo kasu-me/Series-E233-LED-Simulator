@@ -95,7 +95,7 @@
 			<BUTTON id="save-image-button" class="large-button"><img src="/resources/img/buttons/dl.png">画像を保存</BUTTON><BUTTON class="large-button" id="tweet-button"><img src="/resources/img/buttons/tw.png">今の表示をTwitterに投稿</BUTTON><BUTTON class="large-button" disabled><img src="/resources/img/buttons/tw_anime.png">アニメーションをTwitterに投稿</BUTTON>
 		</DIV>
 		<div id="animations-and-article-container">
-			<DIV id="animations-container" class="button-area">
+			<DIV id="animations-container">
 				<div>アニメーション</div>
 				<div id="animation-controls">
 					<BUTTON class="animation-button" id="animation-add-frame-button">+ 記録</BUTTON><BUTTON id="animation-play-button" disabled class="animation-button"><img src="/resources/img/buttons/play.png">再生</BUTTON><BUTTON id="animation-stop-button" disabled class="animation-button"><img src="/resources/img/buttons/stop.png"> 停止</BUTTON><span>スピード：速<INPUT type="range" max="10000" min="500" value="2000" id="animation-interval-range" height="1.0em">遅</span><BUTTON id="animation-reset-button" disabled class="animation-button">× リセット</BUTTON>
