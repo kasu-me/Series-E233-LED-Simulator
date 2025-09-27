@@ -40,7 +40,7 @@
 			}
 			?>
 			<div>
-			<input class="led-control-input-box" type="text" id="shubetsu-textbox" placeholder="種別を入力" title="種別を入力">
+			<div class="input-container"><input class="led-control-input-box" type="text" id="shubetsu-textbox" placeholder="種別を入力" title="種別を入力"><div class="only-smartphone led-control-input-pull-down">▼</div></div>
 			<?php
 			// 種別リスト生成
 			echo '<select id="select-shubetsu" size="6" class="led-control-box led-control-select-box">';
@@ -64,7 +64,7 @@
 			echo '</select>';
 			?>
 			</div><div>
-			<input class="led-control-input-box" type="text" id="ikisaki-textbox" placeholder="行先を入力" title="行先を入力">
+			<div class="input-container"><input class="led-control-input-box" type="text" id="ikisaki-textbox" placeholder="行先を入力" title="行先を入力"><div class="only-smartphone led-control-input-pull-down">▼</div></div>
 			<?php
 			// 行先リスト生成
 			echo '<select id="select-ikisaki" size="6" class="led-control-box led-control-select-box">';

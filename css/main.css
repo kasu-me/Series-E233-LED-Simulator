@@ -68,6 +68,19 @@ button {
 	}
 }
 
+input:not([type="range"]),
+select {
+	border: 1px solid #555;
+	outline: none;
+
+	&:focus {
+		border: 1px solid var(--input-focus) !important;
+		outline: none;
+		box-shadow: 0 0 5px var(--input-focus);
+	}
+}
+
+
 p:last-child {
 	margin-bottom: 0;
 }
@@ -95,12 +108,24 @@ p:last-child {
 		}
 
 		&>div {
+
+			& .input-container:has(+select:disabled) {
+
+				& .led-control-input-pull-down,
+				& .led-control-input-box {
+					pointer-events: none;
+					opacity: 0.5;
+					filter: brightness(0.75);
+					user-select: none;
+				}
+			}
+
 			& input.led-control-input-box {
 				display: block;
 				width: 15rem;
 			}
 
-			& select.led-control-box {
+			& select.led-control-select-box {
 				width: 15rem;
 			}
 
@@ -216,4 +241,49 @@ p:last-child {
 
 div#file-time {
 	display: none;
+}
+
+
+.only-smartphone {
+	display: none;
+}
+
+.access-from-smartphone {
+
+	.only-smartphone {
+		display: block;
+	}
+
+	#control-panel {
+		& #led-controller-area {
+			margin-bottom: 1.0rem;
+
+			& .led-control-select-box:not(#color-select-box) {
+				visibility: hidden;
+			}
+
+			& .input-container {
+				position: relative;
+
+				& .led-control-input-pull-down {
+					display: block;
+					position: absolute;
+					font-weight: bold;
+					margin-bottom: 0.5rem;
+					top: 0;
+					right: 0;
+					padding: 0.1rem 0.5rem;
+					padding-left: 3rem;
+					cursor: pointer;
+					color: #444;
+				}
+			}
+
+			&>div {
+				& #color-select-box {
+					height: 1.75rem;
+				}
+			}
+		}
+	}
 }

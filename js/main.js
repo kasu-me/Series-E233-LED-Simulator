@@ -1,4 +1,9 @@
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
+	const isSmartphone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+	if (isSmartphone) {
+		document.body.classList.add("access-from-smartphone");
+	}
+
 	const imageVersion = document.getElementById("file-time").innerText;
 	const url = new URL(window.location.href);
 	const pathName = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
@@ -253,6 +258,12 @@ window.addEventListener("load", () => {
 			const shuId = shuSelectBox.value;
 			const color = colorInputBox.value;
 			displayLED(ikiId, shuId, color, true);
+		});
+	});
+	//プルダウン(スマホ用)
+	document.querySelectorAll(".led-control-input-pull-down").forEach(elm => {
+		elm.addEventListener("click", () => {
+			elm.parentElement.parentElement.querySelector(".led-control-select-box").showPicker();
 		});
 	});
 
