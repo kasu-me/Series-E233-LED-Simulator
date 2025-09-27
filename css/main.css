@@ -253,12 +253,7 @@ div#file-time {
 	display: none;
 }
 
-.access-from-smartphone:not(.unsupported-showpicker) {
-
-	.only-smartphone {
-		display: block;
-	}
-
+.access-from-smartphone {
 	#control-panel {
 		padding: 2.0rem;
 
@@ -283,32 +278,12 @@ div#file-time {
 						font-size: 5vw;
 
 					}
-
-					& .led-control-input-pull-down {
-						display: block;
-						position: absolute;
-						font-weight: bold;
-						margin-bottom: 0.5rem;
-						top: 0;
-						right: 0;
-						padding: 0.1rem;
-						padding-left: 8vw;
-						padding-right: 0.3em;
-						cursor: pointer;
-						color: #444;
-					}
 				}
 
 				& .led-control-select-box:not(#color-select-box) {
-					visibility: hidden;
-					height: 0;
-					margin: 0;
-					padding: 0;
-					position: absolute;
-					z-index: -1;
-					opacity: 0;
-					top: 0;
-					left: 0;
+					font-size: 5vw;
+					width: 100%;
+					margin-bottom: 1.0em;
 				}
 
 				&#color-container {
@@ -352,15 +327,41 @@ div#file-time {
 			}
 		}
 	}
-}
 
-.access-from-smartphone.unsupported-showpicker {
-	#control-panel {
-		& #led-controller-area {
-			&>div {
-				&#color-container {
-					& #color-select-box {
-						height: unset;
+	&:not(.unsupported-showpicker) {
+		.only-smartphone {
+			display: block;
+		}
+
+		#control-panel {
+			& #led-controller-area {
+				&>div {
+					& .input-container {
+						& .led-control-input-pull-down {
+							display: block;
+							position: absolute;
+							font-weight: bold;
+							margin-bottom: 0.5rem;
+							top: 0;
+							right: 0;
+							padding: 0.1rem;
+							padding-left: 8vw;
+							padding-right: 0.3em;
+							cursor: pointer;
+							color: #444;
+						}
+					}
+
+					& .led-control-select-box:not(#color-select-box) {
+						visibility: hidden;
+						height: 0;
+						margin: 0;
+						padding: 0;
+						position: absolute;
+						z-index: -1;
+						opacity: 0;
+						top: 0;
+						left: 0;
 					}
 				}
 			}
