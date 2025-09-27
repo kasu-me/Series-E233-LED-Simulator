@@ -288,7 +288,7 @@ div#file-time {
 
 				&#color-container {
 					margin-top: 2.5rem;
-					margin-bottom: 2.5rem;
+					margin-bottom: 10vw;
 
 					& #color-select-box,
 					& #no-color-button {
@@ -362,6 +362,11 @@ div#file-time {
 						opacity: 0;
 						top: 0;
 						left: 0;
+					}
+
+					&#color-container {
+						margin-top: 2.5rem;
+						margin-bottom: 2.5rem;
 					}
 				}
 			}
