@@ -95,12 +95,12 @@ p:last-child {
 		}
 
 		&>div {
-			& input.led-display-input-box {
+			& input.led-control-input-box {
 				display: block;
 				width: 15rem;
 			}
 
-			& select.led-control-main-panels {
+			& select.led-control-select-box {
 				width: 15rem;
 			}
 
