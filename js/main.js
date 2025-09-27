@@ -3,6 +3,11 @@ window.addEventListener("DOMContentLoaded", () => {
 	if (isSmartphone) {
 		document.body.classList.add("access-from-smartphone");
 	}
+	//SafariはshowPicker()に対応していない
+	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+	if (isSafari) {
+		document.body.classList.add("unsupported-showpicker");
+	}
 
 	const imageVersion = document.getElementById("file-time").innerText;
 	const url = new URL(window.location.href);
@@ -271,7 +276,10 @@ window.addEventListener("DOMContentLoaded", () => {
 	//プルダウン(スマホ用)
 	document.querySelectorAll(".led-control-input-pull-down").forEach(elm => {
 		elm.addEventListener("click", () => {
-			elm.parentElement.parentElement.querySelector(".led-control-select-box").showPicker();
+			const selectBox = elm.parentElement.parentElement.querySelector(".led-control-select-box")
+			selectBox.showPicker();
+			selectBox.focus();
+			selectBox.click();
 		});
 	});
 

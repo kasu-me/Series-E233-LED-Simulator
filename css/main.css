@@ -253,7 +253,7 @@ div#file-time {
 	display: none;
 }
 
-.access-from-smartphone {
+.access-from-smartphone:not(.unsupported-showpicker) {
 
 	.only-smartphone {
 		display: block;
@@ -348,6 +348,20 @@ div#file-time {
 
 				& button {
 					font-size: 2.5vw;
+				}
+			}
+		}
+	}
+}
+
+.access-from-smartphone.unsupported-showpicker {
+	#control-panel {
+		& #led-controller-area {
+			&>div {
+				&#color-container {
+					& #color-select-box {
+						height: unset;
+					}
 				}
 			}
 		}
