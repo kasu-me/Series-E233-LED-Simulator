@@ -32,14 +32,16 @@
 	<DIV id="control-panel">
 		<DIV id="selector-area">
 			<?php
-
 			// data.jsonを読み込む
 			$data = [];
 			if (file_exists($dataFilePath)) {
 				$json = file_get_contents($dataFilePath);
 				$data = json_decode($json, true);
 			}
-
+			?>
+			<div>
+			<input class="led-display-input-box" type="text" id="shubetsu-textbox" placeholder="種別を入力" title="種別を入力">
+			<?php
 			// 種別リスト生成
 			echo '<select id="select-shubetsu" size="6" class="led-control-main-panels">';
 			echo '<option value="0" selected>種別無表示</option>';
@@ -60,7 +62,10 @@
 				}
 			}
 			echo '</select>';
-
+			?>
+			</div><div>
+			<input class="led-display-input-box" type="text" id="ikisaki-textbox" placeholder="行先を入力" title="行先を入力">
+			<?php
 			// 行先リスト生成
 			echo '<select id="select-ikisaki" size="6" class="led-control-main-panels">';
 			echo '<option value="0" selected>行先無表示</option>';
@@ -81,7 +86,7 @@
 				}
 			}
 			echo '</select>';
-			?><input type="color" id="select-color" value="#000000" title="帯色選択" class="led-control-main-panels"><button id="no-color-button">帯なし</button>
+			?></div><div><input type="color" id="select-color" value="#000000" title="帯色選択" class="led-control-main-panels"></div><div><button id="no-color-button">帯なし</button></div>
 		</DIV>
 		<DIV id="" class="button-area">
 			<BUTTON class="large-button" id="random-shubetsu-button"><img src="/resources/img/buttons/rnd_shubetsu.png">ランダム種別</BUTTON><BUTTON class="large-button" id="random-ikisaki-button"><img src="/resources/img/buttons/rnd_ikisaki.png">ランダム行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-button"><img src="/resources/img/buttons/rnd_shubetsuandikisaki.png">ランダム種別+行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-color-button"><img src="/resources/img/buttons/rnd_all.png">ランダム種別+行先+帯色</BUTTON><BUTTON class="large-button" id="random-color-button"><img src="/resources/img/buttons/rnd_clr.png">ランダム帯色</BUTTON>

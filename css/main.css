@@ -87,22 +87,35 @@ p:last-child {
 
 	& #selector-area {
 		margin-bottom: 2.0rem;
+		display: flex;
 
 		&>* {
 			margin-right: 1.0rem;
 			vertical-align: top;
 		}
+
+		&>div {
+			& input.led-display-input-box {
+				display: block;
+				width: 15rem;
+			}
+
+			& select.led-control-main-panels {
+				width: 15rem;
+			}
+
+			& #select-color {
+				height: 10.1rem;
+				width: 10rem;
+				cursor: pointer;
+			}
+		}
+
 	}
 
 	& .button-area {
 		margin-top: 1rem;
 		margin-bottom: 1rem;
-	}
-
-	& #select-color {
-		height: 8.25rem;
-		width: 10rem;
-		cursor: pointer;
 	}
 
 	& #animations-and-article-container {

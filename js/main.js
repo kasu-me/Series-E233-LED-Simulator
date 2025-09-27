@@ -75,6 +75,8 @@ window.addEventListener("load", () => {
 	const ikiSelectBox = document.getElementById("select-ikisaki");
 	const shuSelectBox = document.getElementById("select-shubetsu");
 	const colorBar = document.getElementById("color-bar");
+	const shuTextBox = document.getElementById("shubetsu-textbox");
+	const ikiTextBox = document.getElementById("ikisaki-textbox");
 
 	//キャンバス設定
 	const canvas = document.getElementById("mainled");
@@ -85,7 +87,7 @@ window.addEventListener("load", () => {
 	ctx.imageSmoothingEnabled = false;
 
 	//LEDを表示する
-	function displayLED(ikiId, shuId, color) {
+	function displayLED(ikiId, shuId, color, isFromTextBox = false) {
 		//キャンバスを空にする
 		clearCanvas();
 
@@ -113,6 +115,12 @@ window.addEventListener("load", () => {
 
 		//ボタン要素等の状態を更新
 		ikiSelectBox.disabled = isLargeType;
+
+		//テキストボックス入力以外で呼ばれた場合はテキストボックスに反映
+		if (!isFromTextBox) {
+			ikiTextBox.value = ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "";
+			shuTextBox.value = shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "";
+		}
 
 		//LED制御サーバにリクエストを送信
 		requestRealLEDServer(ikiSelectBox.value, shuSelectBox.value);
@@ -223,12 +231,28 @@ window.addEventListener("load", () => {
 	const colorInputBox = document.getElementById("select-color");
 
 	//コントローライベント
+	//セレクトボックス
 	document.querySelectorAll(".led-control-main-panels").forEach(elm => {
 		elm.addEventListener("input", () => {
 			const ikiId = ikiSelectBox.value;
 			const shuId = shuSelectBox.value;
 			const color = colorInputBox.value;
 			displayLED(ikiId, shuId, color);
+		});
+	});
+	//テキストボックス
+	document.querySelectorAll(".led-display-input-box").forEach(elm => {
+		elm.addEventListener("input", () => {
+			const ikiText = ikiTextBox.value;
+			const shuText = shuTextBox.value;
+
+			ikiSelectBox.value = [...ikiSelectBox.options].find(opt => opt.text === ikiText)?.value ?? ikiSelectBox.value;
+			shuSelectBox.value = [...shuSelectBox.options].find(opt => opt.text === shuText)?.value ?? shuSelectBox.value;
+
+			const ikiId = ikiSelectBox.value;
+			const shuId = shuSelectBox.value;
+			const color = colorInputBox.value;
+			displayLED(ikiId, shuId, color, true);
 		});
 	});
 
