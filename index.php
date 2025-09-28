@@ -25,10 +25,10 @@
 	<meta property="og:url" content="<?php echo (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 	<meta property="og:title" content="E233系LEDシミュレータ" />
 	<meta property="og:description" content="ブラウザ上でE233系(一部小田急4000形と相鉄11000系と都営10-300形と都営5500形としなの鉄道SR1系)の行先表示器を再現することができるシミュレータ。" />
-	<?php if ($_SERVER['QUERY_STRING'] == "" || isset($_GET["cmd"])) : ?>
+	<?php if ($queryString == "" || isset($_GET["cmd"])) : ?>
 		<meta property="og:image" content="https://<?php echo $_SERVER["HTTP_HOST"] ?>/resources/img/twtr.png" />
 	<?php else : ?>
-		<meta property="og:image" content="https://<?php echo $_SERVER["HTTP_HOST"] ?>/resources/img/card.php?<?php echo $_SERVER["QUERY_STRING"]; ?>" />
+		<meta property="og:image" content="https://<?php echo $_SERVER["HTTP_HOST"] ?>/resources/img/card.php?<?php echo $queryString; ?>" />
 	<?php endif; ?>
 	<meta charset="utf-8">
 	<title>E233系LEDシミュレータ ver.3.0</title>
