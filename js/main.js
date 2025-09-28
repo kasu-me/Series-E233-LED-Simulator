@@ -148,11 +148,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//CANVASに画像を読み込み opt=trueで最終的に前景画像も設置
 	function setImageToCanvas(imgSrc, x1, y1, x2, y2, x3, y3, x4, y4, opt) {
-		/* Imageオブジェクトを生成 */
 		var img = new Image();
 		img.crossOrigin = "Anonymous";
 		img.src = imgSrc;
-		/* 画像が読み込まれるのを待ってから処理を続行 */
 		img.onload = function () {
 			ctx.drawImage(img, x1, y1, x2, y2, x3, y3, x4, y4);
 			if (opt) {
