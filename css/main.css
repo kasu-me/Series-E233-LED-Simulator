@@ -210,6 +210,21 @@ p:last-child {
 					}
 				}
 			}
+
+		}
+
+		& div.animation-description-label::before {
+			content: "▲クリックで削除▲";
+		}
+
+		&:has(li.playing) {
+			& li {
+				pointer-events: none;
+			}
+
+			& div.animation-description-label::before {
+				content: "アニメーション再生中";
+			}
 		}
 	}
 

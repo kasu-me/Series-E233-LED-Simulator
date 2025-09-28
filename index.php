@@ -125,7 +125,7 @@
 					<span id="animation-count">0件</span>
 					<ul id="animation-list"></ul>
 				</DIV>
-				<DIV>▲クリックで削除▲</DIV>
+				<DIV class="animation-description-label"></DIV>
 			</DIV>
 			<DIV id="artcle-area">
 				<!--<A HREF="https://twitter.com/Omiya_Shinobu" target="_blank">これをつくったひとのTwitter</A> - バグや不具合の報告などもこちらまで。-->
