@@ -1,4 +1,13 @@
 <?php
+	//アニメーションの場合は1個目のフレーム用のURLにリダイレクト
+	if(isset($_GET['cmd']) && $_GET['cmd']=='animation' && isset($_GET['data'])){
+		$animationDatas=explode(',',$_GET['data']);
+		if(count($animationDatas)>=2){
+			header("Location: ./card.php?shu=".$animationDatas[0]."&iki=".$animationDatas[1].(isset($_GET['col'])?"&col=".$_GET['col']:""));
+			exit();
+		}
+	}
+
 	header("Content-Type: image/png");
 
 	function startsWith($haystack, $needle) {
