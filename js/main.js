@@ -9,16 +9,11 @@ window.addEventListener("DOMContentLoaded", () => {
 		document.body.classList.add("unsupported-showpicker");
 	}
 
+	//キャッシュ対策用のバージョン文字列を取得
 	const imageVersion = document.getElementById("file-time").innerText;
+	//リソースのパスを取得
 	const url = new URL(window.location.href);
-	const pathName = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
-
-	console.log("===============================================");
-	console.log("E233系側面LEDシミュレーター 3");
-	console.log("SeriesE233 LED Simulator 3");
-	console.log("version 3.0.2.0 / Last Updated : 2025/09/28");
-	console.log("Made by M_Kasumi (Twitter:@Omiya_Shinobu)");
-	console.log("===============================================");
+	const resourceBasePath = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
 
 	//1枚の画像に設定されている幕の数
 	const MAKU_COUNT_PER_IMAGE_IKISAKI = 100;
@@ -42,19 +37,19 @@ window.addEventListener("DOMContentLoaded", () => {
 		"ikisaki": [],
 		"front": new Image()
 	};
-	const promises = [];
+	const imageLoadPromises = [];
 
 	//前景画像読み込み
 	images.front.crossOrigin = "Anonymous";
-	images.front.src = `${pathName}resources/img/front_b.png`;
+	images.front.src = `${resourceBasePath}resources/img/front_b.png`;
 
 	//行先画像読み込み
 	for (let i = 0; i <= lastImgPageCountIki; i++) {
 		const img = new Image();
 		images.ikisaki.push(img);
 		img.crossOrigin = "Anonymous";
-		img.src = `${pathName}resources/led/ledimgA${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
-		promises.push(new Promise((resolve) => {
+		img.src = `${resourceBasePath}resources/led/ledimgA${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
+		imageLoadPromises.push(new Promise((resolve) => {
 			img.onload = resolve;
 		}));
 	}
@@ -64,8 +59,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		const img = new Image();
 		images.shubetsuSmall.push(img);
 		img.crossOrigin = "Anonymous";
-		img.src = `${pathName}resources/led/ledtypeS${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
-		promises.push(new Promise((resolve) => {
+		img.src = `${resourceBasePath}resources/led/ledtypeS${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
+		imageLoadPromises.push(new Promise((resolve) => {
 			img.onload = resolve;
 		}));
 	}
@@ -75,8 +70,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		const img = new Image();
 		images.shubetsuLarge.push(img);
 		img.crossOrigin = "Anonymous";
-		img.src = `${pathName}resources/led/ledtypeA${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
-		promises.push(new Promise((resolve) => {
+		img.src = `${resourceBasePath}resources/led/ledtypeA${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
+		imageLoadPromises.push(new Promise((resolve) => {
 			img.onload = resolve;
 		}));
 	}
@@ -373,7 +368,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	//各種コントロール要素イベント付与ここまで
 
 	//画像全ての読み込みが終わったら初期表示
-	Promise.all(promises).then(() => {
+	Promise.all(imageLoadPromises).then(() => {
 		const queryString = window.location.search;
 		//クエリパラメータが無ければデフォルト表示、あれば指定された内容で表示
 		if (!queryString) {
@@ -400,6 +395,13 @@ window.addEventListener("DOMContentLoaded", () => {
 			colorInputBox.value = initColor;
 			displayLEDWithCurrentSettings();
 		}
+
+		console.log("===============================================");
+		console.log("E233系側面LEDシミュレーター 3");
+		console.log("SeriesE233 LED Simulator 3");
+		console.log("version 3.0.2.0 / Last Updated : 2025/09/28");
+		console.log("Made by M_Kasumi (Twitter:@Omiya_Shinobu)");
+		console.log("===============================================");
 	});
 
 });
