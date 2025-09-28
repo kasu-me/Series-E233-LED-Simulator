@@ -391,9 +391,11 @@ window.addEventListener("DOMContentLoaded", () => {
 				const initShu = urlParams.get('shu') ?? 0;
 				ikiSelectBox.value = initIki
 				shuSelectBox.value = initShu;
+				displayLEDWithCurrentSettings();
 			}
+		} else {
+			displayLEDWithCurrentSettings();
 		}
-		displayLEDWithCurrentSettings();
 
 		console.log("===============================================");
 		console.log("E233系側面LEDシミュレーター 3");
