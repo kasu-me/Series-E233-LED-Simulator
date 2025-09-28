@@ -135,6 +135,9 @@ window.addEventListener("DOMContentLoaded", () => {
 		//LED制御サーバにリクエストを送信
 		requestRealLEDServer(ikiSelectBox.value, shuSelectBox.value);
 	}
+	function displayLEDWithCurrentSettings(isFromTextBox = false) {
+		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value, isFromTextBox);
+	}
 
 	//CANVAS系
 
@@ -244,10 +247,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	//セレクトボックス
 	document.querySelectorAll(".led-control-box").forEach(elm => {
 		elm.addEventListener("input", () => {
-			const ikiId = ikiSelectBox.value;
-			const shuId = shuSelectBox.value;
-			const color = colorInputBox.value;
-			displayLED(ikiId, shuId, color);
+			displayLEDWithCurrentSettings();
 		});
 	});
 	//テキストボックス
@@ -259,10 +259,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			ikiSelectBox.value = [...ikiSelectBox.options].find(opt => opt.text === ikiText)?.value ?? ikiSelectBox.value;
 			shuSelectBox.value = [...shuSelectBox.options].find(opt => opt.text === shuText)?.value ?? shuSelectBox.value;
 
-			const ikiId = ikiSelectBox.value;
-			const shuId = shuSelectBox.value;
-			const color = colorInputBox.value;
-			displayLED(ikiId, shuId, color, true);
+			displayLEDWithCurrentSettings(true);
 		});
 		elm.addEventListener("blur", () => {
 			console.log("unfocus");
@@ -306,31 +303,31 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 
 	document.getElementById("random-ikisaki-button").addEventListener("click", () => {
-		const ikiId = setRandomIkiToSelectBox();
-		displayLED(ikiId, shuSelectBox.value, colorInputBox.value);
+		setRandomIkiToSelectBox();
+		displayLEDWithCurrentSettings();
 	});
 	document.getElementById("random-shubetsu-button").addEventListener("click", () => {
-		const shuId = setRandomShuToSelectBox();
-		displayLED(ikiSelectBox.value, shuId, colorInputBox.value);
+		setRandomShuToSelectBox();
+		displayLEDWithCurrentSettings();
 	});
 	document.getElementById("random-shubetsu-ikisaki-button").addEventListener("click", () => {
-		const ikiId = setRandomIkiToSelectBox();
-		const shuId = setRandomShuToSelectBox();
-		displayLED(ikiId, shuId, colorInputBox.value);
+		setRandomIkiToSelectBox();
+		setRandomShuToSelectBox();
+		displayLEDWithCurrentSettings();
 	});
 	document.getElementById("random-shubetsu-ikisaki-color-button").addEventListener("click", () => {
-		const ikiId = setRandomIkiToSelectBox();
-		const shuId = setRandomShuToSelectBox();
+		setRandomIkiToSelectBox();
+		setRandomShuToSelectBox();
 		setRandomColorToInputBox();
-		displayLED(ikiId, shuId, colorInputBox.value);
+		displayLEDWithCurrentSettings();
 	});
 	document.getElementById("random-color-button").addEventListener("click", () => {
 		setRandomColorToInputBox();
-		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+		displayLEDWithCurrentSettings();
 	});
 	document.getElementById("no-color-button").addEventListener("click", () => {
 		colorInputBox.value = "#bbbbbb";
-		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+		displayLEDWithCurrentSettings();
 	});
 
 	//Twitter投稿ボタンイベント
@@ -356,7 +353,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		animation.startAnimation((ikiId, shuId) => {
 			ikiSelectBox.value = ikiId;
 			shuSelectBox.value = shuId;
-			displayLED(ikiId, shuId, colorInputBox.value);
+			displayLEDWithCurrentSettings();
 		});
 	});
 	document.getElementById("animation-stop-button").addEventListener("click", () => {
@@ -370,7 +367,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		const queryString = window.location.search;
 		//クエリパラメータが無ければデフォルト表示、あれば指定された内容で表示
 		if (!queryString) {
-			displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value);
+			displayLEDWithCurrentSettings();
 		} else {
 			let initIki = ikiSelectBox.value;
 			let initShu = shuSelectBox.value;
@@ -391,7 +388,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			ikiSelectBox.value = initIki
 			shuSelectBox.value = initShu;
 			colorInputBox.value = initColor;
-			displayLED(initIki, initShu, initColor);
+			displayLEDWithCurrentSettings();
 		}
 	});
 
