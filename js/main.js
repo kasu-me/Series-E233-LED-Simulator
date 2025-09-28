@@ -373,13 +373,25 @@ window.addEventListener("DOMContentLoaded", () => {
 		//クエリパラメータが無ければデフォルト表示、あれば指定された内容で表示
 		if (queryString) {
 			const urlParams = new URLSearchParams(queryString);
-			const initIki = urlParams.get('iki') ?? 0;
-			const initShu = urlParams.get('shu') ?? 0;
-			const initColor = "#" + urlParams.get('col') ?? "000000";
 
-			ikiSelectBox.value = initIki
-			shuSelectBox.value = initShu;
-			colorInputBox.value = initColor;
+			//アニメーション
+			if (urlParams.get('cmd') === 'animation' && urlParams.get('data')) {
+				const animationDatas = urlParams.get('data').split(',');
+				animation.clearList();
+				for (let i = 0; i < animationDatas.length; i += 2) {
+					animation.addList(animationDatas[i + 1], animationDatas[i], `${[...shuSelectBox.options].find(opt => opt.value === animationDatas[i])?.text} ${[...ikiSelectBox.options].find(opt => opt.value === animationDatas[i + 1])?.text}`);
+				}
+				document.getElementById("animation-play-button").click();
+			}
+			//アニメーション以外の表示
+			else {
+				const initIki = urlParams.get('iki') ?? 0;
+				const initShu = urlParams.get('shu') ?? 0;
+				const initColor = "#" + urlParams.get('col') ?? "000000";
+				ikiSelectBox.value = initIki
+				shuSelectBox.value = initShu;
+				colorInputBox.value = initColor;
+			}
 		}
 		displayLEDWithCurrentSettings();
 
