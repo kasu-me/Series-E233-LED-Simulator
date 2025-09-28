@@ -381,6 +381,8 @@ window.addEventListener("DOMContentLoaded", () => {
 				for (let i = 0; i < animationDatas.length; i += 2) {
 					animation.addList(animationDatas[i + 1], animationDatas[i], `${[...shuSelectBox.options].find(opt => opt.value === animationDatas[i])?.text} ${[...ikiSelectBox.options].find(opt => opt.value === animationDatas[i + 1])?.text}`);
 				}
+				const initColor = "#" + urlParams.get('col') ?? "000000";
+				colorInputBox.value = initColor;
 				document.getElementById("animation-play-button").click();
 			}
 			//アニメーション以外の表示
