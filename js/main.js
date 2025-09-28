@@ -342,8 +342,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${shuSelectBox.options[shuSelectBox.selectedIndex].text} ${ikiSelectBox.options[ikiSelectBox.selectedIndex].text}」を帯色${colorInputBox.value}で表示しました！`);
 		const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?shu=${shuId}&iki=${ikiId}&col=${color}`);
 		const viaAccount = "Omiya_Shinobu";
-		const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&via=${viaAccount}`;
-		window.open(url, '_blank');
+		tweet(tweetText, tweetUrl, viaAccount);
 	});
 	tweetAnimationButton.addEventListener("click", () => {
 		if (animation.list.length === 0) {
@@ -354,10 +353,13 @@ window.addEventListener("DOMContentLoaded", () => {
 			const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${animation.list[0].text}」を含む${animation.list.length}件のアニメーションを帯色${colorInputBox.value}で作成しました！`);
 			const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?cmd=animation&data=${animationData}&col=${color}`);
 			const viaAccount = "Omiya_Shinobu";
-			const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&via=${viaAccount}`;
-			window.open(url, '_blank');
+			tweet(tweetText, tweetUrl, viaAccount);
 		}
 	});
+	function tweet(tweetText, tweetUrl, viaAccount) {
+		const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&via=${viaAccount}`;
+		window.open(url, '_blank');
+	}
 
 	//アニメーションボタンイベント
 	document.getElementById("animation-add-frame-button").addEventListener("click", () => {
