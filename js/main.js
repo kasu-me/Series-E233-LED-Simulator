@@ -371,9 +371,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	Promise.all(imageLoadPromises).then(() => {
 		const queryString = window.location.search;
 		//クエリパラメータが無ければデフォルト表示、あれば指定された内容で表示
-		if (!queryString) {
-			displayLEDWithCurrentSettings();
-		} else {
+		if (queryString) {
 			let initIki = ikiSelectBox.value;
 			let initShu = shuSelectBox.value;
 			let initColor = colorInputBox.value;
@@ -393,8 +391,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			ikiSelectBox.value = initIki
 			shuSelectBox.value = initShu;
 			colorInputBox.value = initColor;
-			displayLEDWithCurrentSettings();
 		}
+		displayLEDWithCurrentSettings();
 
 		console.log("===============================================");
 		console.log("E233系側面LEDシミュレーター 3");
