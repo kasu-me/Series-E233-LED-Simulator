@@ -42,6 +42,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	//前景画像読み込み
 	images.front.crossOrigin = "Anonymous";
 	images.front.src = `${resourceBasePath}resources/img/front_b.png`;
+	imageLoadPromises.push(new Promise((resolve) => {
+		images.front.onload = resolve;
+	}));
 
 	//行先画像読み込み
 	for (let i = 0; i <= lastImgPageCountIki; i++) {
