@@ -2,7 +2,7 @@
 	header("Content-Type: image/png");
 
 	function startsWith($haystack, $needle) {
- 	   return (strpos($haystack, $needle) === 0);
+		return (strpos($haystack, $needle) === 0);
 	}
 
 	$img = imagecreatetruecolor(600, 314);
@@ -17,20 +17,15 @@
 	//各種変数定義
 	$overlayImageFiles=[];
 	$paramIndex=0;
-	$firstParamKey="";
 
 	define("MAKU_COUNT_PER_IMAGE_IKISAKI", 100);
 	define("MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL", 28);
 	define("MAKU_COUNT_PER_IMAGE_SHUBETSU_LARGE", 100);
 
 	foreach ($_GET as $key => $value) {
-		$imgId=$key;
-		if(($key!="shu"&&$key!="iki"&&$paramIndex==0) || $key=="shu"){
-			$firstParamKey=$key;
-			//新方式対応の変換(旧方式はキーをそのまま使うため変換しない)
-			if($key=="shu"){
-				$imgId=$value;
-			}
+		if($key=="shu"){
+			$imgId=$value;
+			
 			//大きい種別画像
 			if(startsWith($imgId,"C")){
 				$bigShubetsuImg = imagecreatefrompng("../led/ledtypeA000.png");
@@ -53,15 +48,8 @@
 				imagecopyresized($img, $smallShubetsuImg, 109, 32, 51*($imgId%MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL), 0, 144, 96, 48, 32); // 合成する
 				imagedestroy($smallShubetsuImg); // 破棄
 			}
-		}else if(($key!="shu"&&$key!="iki"&&$paramIndex==1) || $key=="iki"){
-			//2番目のパラメータがcolの場合は画像IDを最初のキーにする
-			if($paramIndex==1 && startsWith($imgId,"col")){
-				$imgId=$firstParamKey;
-			}
-			//新方式対応の変換(旧方式はキーをそのまま使うため変換しない)
-			if($key=="iki"){
-				$imgId=$value;
-			}
+		}else if($key=="iki"){
+			$imgId=$value;
 			$ikisakiImg = imagecreatefrompng("../led/ledimgA".str_pad(floor($imgId/MAKU_COUNT_PER_IMAGE_IKISAKI),3,0,STR_PAD_LEFT).".png");
 			// 合成する画像のサイズを取得
 			$imgWidth = imagesx($ikisakiImg);
@@ -69,7 +57,7 @@
 			imageLayerEffect($img, IMG_EFFECT_ALPHABLEND);// 合成する際、透過を考慮する
 			imagecopyresized($img, $ikisakiImg, 252, -99*($imgId%MAKU_COUNT_PER_IMAGE_IKISAKI)+32, 0, 0, $imgWidth*3, $imgHeight*3, $imgWidth, $imgHeight); // 合成する
 			imagedestroy($ikisakiImg); // 破棄
-		}else if($imgId=="col"){
+		}else if($key=="col"){
 			//色の場合は後で処理するためここでは何もしない
 		}
 		$paramIndex++;
