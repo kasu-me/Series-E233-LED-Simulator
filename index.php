@@ -113,7 +113,7 @@
 			<BUTTON class="large-button" id="random-shubetsu-button"><img src="/resources/img/buttons/rnd_shubetsu.png">ランダム種別</BUTTON><BUTTON class="large-button" id="random-ikisaki-button"><img src="/resources/img/buttons/rnd_ikisaki.png">ランダム行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-button"><img src="/resources/img/buttons/rnd_shubetsuandikisaki.png">ランダム種別+行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-color-button"><img src="/resources/img/buttons/rnd_all.png">ランダム種別+行先+帯色</BUTTON><BUTTON class="large-button" id="random-color-button"><img src="/resources/img/buttons/rnd_clr.png">ランダム帯色</BUTTON>
 		</DIV>
 		<DIV id="" class="button-area">
-			<BUTTON id="save-image-button" class="large-button"><img src="/resources/img/buttons/dl.png">画像を保存</BUTTON><BUTTON class="large-button" id="tweet-button"><img src="/resources/img/buttons/tw.png">今の表示をTwitterに投稿</BUTTON><BUTTON class="large-button" disabled><img src="/resources/img/buttons/tw_animation.png">アニメーションをTwitterに投稿</BUTTON>
+			<BUTTON id="save-image-button" class="large-button"><img src="/resources/img/buttons/dl.png">画像を保存</BUTTON><BUTTON class="large-button" id="tweet-button"><img src="/resources/img/buttons/tw.png">今の表示をTwitterに投稿</BUTTON><BUTTON class="large-button" id="tweet-animation-button" disabled><img src="/resources/img/buttons/tw_animation.png">アニメーションをTwitterに投稿</BUTTON>
 		</DIV>
 		<div id="animations-and-article-container">
 			<DIV id="animations-container">

@@ -13,12 +13,13 @@ class Animation {
 			addButton: null,
 			playButton: null,
 			stopButton: null,
-			resetButton: null
+			resetButton: null,
+			tweetButton: null
 		},
 		speedRange: null
 	}
 
-	constructor(listContainerElement, buttonContainerElement) {
+	constructor(listContainerElement, buttonContainerElement, tweetButtonElement) {
 		this.uiElements.list.counterElement = listContainerElement.querySelector("#animation-count");
 		this.uiElements.list.listElement = listContainerElement.querySelector("#animation-list");
 		this.uiElements.buttons.addButton = buttonContainerElement.querySelector("#animation-add-frame-button");
@@ -26,6 +27,7 @@ class Animation {
 		this.uiElements.buttons.stopButton = buttonContainerElement.querySelector("#animation-stop-button");
 		this.uiElements.buttons.resetButton = buttonContainerElement.querySelector("#animation-reset-button");
 		this.uiElements.speedRange = buttonContainerElement.querySelector("#animation-interval-range");
+		this.uiElements.buttons.tweetButton = tweetButtonElement;
 	}
 	addList(ikiId, shuId, text) {
 		this.list.push({ ikiId: ikiId, shuId: shuId, text: text });
@@ -92,6 +94,7 @@ class Animation {
 			li.appendChild(span);
 		});
 		if (this.list.length > 0) {
+			this.uiElements.buttons.tweetButton.disabled = false;
 			if (this.isPlaying) {
 				this.uiElements.buttons.addButton.disabled = true;
 				this.uiElements.buttons.playButton.disabled = true;
@@ -104,6 +107,7 @@ class Animation {
 				this.uiElements.buttons.resetButton.disabled = false;
 			}
 		} else {
+			this.uiElements.buttons.tweetButton.disabled = true;
 			this.uiElements.buttons.addButton.disabled = false;
 			this.uiElements.buttons.playButton.disabled = true;
 			this.uiElements.buttons.resetButton.disabled = true;

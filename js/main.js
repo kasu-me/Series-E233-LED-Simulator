@@ -236,7 +236,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	//CANVAS系ここまで
 
 	//アニメーション初期化
-	const animation = new Animation(document.getElementById("animation-list-container"), document.getElementById("animation-controls"));
+	const tweetAnimationButton = document.getElementById("tweet-animation-button");
+	const animation = new Animation(document.getElementById("animation-list-container"), document.getElementById("animation-controls"), tweetAnimationButton);
 
 	//各種コントロール要素イベント付与
 	const colorInputBox = document.getElementById("color-select-box");
@@ -343,6 +344,19 @@ window.addEventListener("DOMContentLoaded", () => {
 		const viaAccount = "Omiya_Shinobu";
 		const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&via=${viaAccount}`;
 		window.open(url, '_blank');
+	});
+	tweetAnimationButton.addEventListener("click", () => {
+		if (animation.list.length === 0) {
+			return;
+		} else {
+			const animationData = animation.list.map(item => `${item.shuId},${item.ikiId}`).join(',');
+			const color = colorInputBox.value.slice(1);
+			const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${animation.list[0].text}」を含む${animation.list.length}件のアニメーションを帯色${colorInputBox.value}で作成しました！`);
+			const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?cmd=animation&data=${animationData}&col=${color}`);
+			const viaAccount = "Omiya_Shinobu";
+			const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&via=${viaAccount}`;
+			window.open(url, '_blank');
+		}
 	});
 
 	//アニメーションボタンイベント
