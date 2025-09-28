@@ -374,6 +374,10 @@ window.addEventListener("DOMContentLoaded", () => {
 		if (queryString) {
 			const urlParams = new URLSearchParams(queryString);
 
+			//色
+			const initColor = "#" + urlParams.get('col') ?? "000000";
+			colorInputBox.value = initColor;
+
 			//アニメーション
 			if (urlParams.get('cmd') === 'animation' && urlParams.get('data')) {
 				const animationDatas = urlParams.get('data').split(',');
@@ -381,18 +385,14 @@ window.addEventListener("DOMContentLoaded", () => {
 				for (let i = 0; i < animationDatas.length; i += 2) {
 					animation.addList(animationDatas[i + 1], animationDatas[i], `${[...shuSelectBox.options].find(opt => opt.value === animationDatas[i])?.text} ${[...ikiSelectBox.options].find(opt => opt.value === animationDatas[i + 1])?.text}`);
 				}
-				const initColor = "#" + urlParams.get('col') ?? "000000";
-				colorInputBox.value = initColor;
 				document.getElementById("animation-play-button").click();
 			}
 			//アニメーション以外の表示
 			else {
 				const initIki = urlParams.get('iki') ?? 0;
 				const initShu = urlParams.get('shu') ?? 0;
-				const initColor = "#" + urlParams.get('col') ?? "000000";
 				ikiSelectBox.value = initIki
 				shuSelectBox.value = initShu;
-				colorInputBox.value = initColor;
 			}
 		}
 		displayLEDWithCurrentSettings();
