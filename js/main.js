@@ -128,15 +128,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		//テキストボックス入力以外で呼ばれた場合はテキストボックスに反映
 		if (!isFromTextBox) {
-			ikiTextBox.value = ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "";
-			shuTextBox.value = shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "";
+			updateTextBoxWithCurrentSettings()
 		}
 
 		//LED制御サーバにリクエストを送信
 		requestRealLEDServer(ikiSelectBox.value, shuSelectBox.value);
 	}
+	//セレクトボックスの値からLEDを表示
 	function displayLEDWithCurrentSettings(isFromTextBox = false) {
 		displayLED(ikiSelectBox.value, shuSelectBox.value, colorInputBox.value, isFromTextBox);
+	}
+	//セレクトボックスの値からテキストボックスの値を更新
+	function updateTextBoxWithCurrentSettings() {
+		ikiTextBox.value = ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "";
+		shuTextBox.value = shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "";
 	}
 
 	//CANVAS系
@@ -256,8 +261,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			const ikiText = ikiTextBox.value;
 			const shuText = shuTextBox.value;
 
-			ikiSelectBox.value = [...ikiSelectBox.options].find(opt => opt.text === ikiText)?.value ?? ikiSelectBox.value;
-			shuSelectBox.value = [...shuSelectBox.options].find(opt => opt.text === shuText)?.value ?? shuSelectBox.value;
+			ikiSelectBox.value = ikiText == "" ? 0 : ([...ikiSelectBox.options].find(opt => opt.text === ikiText)?.value ?? ikiSelectBox.value);
+			shuSelectBox.value = shuText == "" ? 0 : ([...shuSelectBox.options].find(opt => opt.text === shuText)?.value ?? shuSelectBox.value);
 
 			displayLEDWithCurrentSettings(true);
 		});
@@ -272,8 +277,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				shuTextBox.value = "";
 			}
 
-			ikiTextBox.value = ([...ikiSelectBox.options].find(opt => opt.text === ikiText) != null) ? ikiTextBox.value : (ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "");
-			shuTextBox.value = ([...shuSelectBox.options].find(opt => opt.text === shuText) != null) ? shuTextBox.value : (shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "");
+			updateTextBoxWithCurrentSettings()
 		});
 	});
 	//プルダウン(スマホ用)
