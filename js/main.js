@@ -372,22 +372,11 @@ window.addEventListener("DOMContentLoaded", () => {
 		const queryString = window.location.search;
 		//クエリパラメータが無ければデフォルト表示、あれば指定された内容で表示
 		if (queryString) {
-			let initIki = ikiSelectBox.value;
-			let initShu = shuSelectBox.value;
-			let initColor = colorInputBox.value;
-			//旧バージョンのパラメータに対応
-			if (queryString.match(/^\?[C\d]+&\d+&?/)) {
-				const params = queryString.slice(1).split("&");
-				if (params.length == 3) {
-					params[2] = params[2] ? ("#" + params[2].slice(4)) : "#000000";
-					[initShu, initIki, initColor] = params;
-				}
-			} else {
-				const urlParams = new URLSearchParams(queryString);
-				initIki = urlParams.get('iki') ?? 0;
-				initShu = urlParams.get('shu') ?? 0;
-				initColor = "#" + urlParams.get('col') ?? "000000";
-			}
+			const urlParams = new URLSearchParams(queryString);
+			const initIki = urlParams.get('iki') ?? 0;
+			const initShu = urlParams.get('shu') ?? 0;
+			const initColor = "#" + urlParams.get('col') ?? "000000";
+
 			ikiSelectBox.value = initIki
 			shuSelectBox.value = initShu;
 			colorInputBox.value = initColor;

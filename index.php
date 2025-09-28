@@ -1,6 +1,19 @@
 <?php
 	// data.jsonのパス
 	$dataFilePath = $_SERVER['DOCUMENT_ROOT'] . '/resources/data.json';
+	
+	//クエリストリング処理
+	$queryString = $_SERVER['QUERY_STRING'];
+
+	//旧フォーマットのURLパラメータを新フォーマットにリダイレクト
+	if (preg_match('/^[C\d]+&\d+&?/', $queryString)) {
+		if(count($_GET)==3){
+			$params = explode('&', $queryString);
+			$newURL = '/?shu=' . $params[0] . '&iki=' . $params[1] . '&' . $params[2];
+			header('Location: ' . $newURL, true, 301);
+			exit();
+		}		
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
