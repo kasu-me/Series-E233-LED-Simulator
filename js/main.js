@@ -265,6 +265,13 @@ window.addEventListener("DOMContentLoaded", () => {
 			const ikiText = ikiTextBox.value;
 			const shuText = shuTextBox.value;
 
+			if (ikiText === "行先無表示") {
+				ikiTextBox.value = "";
+			}
+			if (shuText === "種別無表示") {
+				shuTextBox.value = "";
+			}
+
 			ikiTextBox.value = ([...ikiSelectBox.options].find(opt => opt.text === ikiText) != null) ? ikiTextBox.value : (ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "");
 			shuTextBox.value = ([...shuSelectBox.options].find(opt => opt.text === shuText) != null) ? shuTextBox.value : (shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "");
 		});
