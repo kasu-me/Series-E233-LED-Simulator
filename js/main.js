@@ -91,7 +91,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	if (!canvas || !canvas.getContext) {
 		return false;
 	}
-	const ctx = canvas.getContext('2d');
+	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 
 	//LEDを表示する
@@ -215,9 +215,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	// dataURLをBlobデータに変換
 	function dataUrlToBlob(dataUrl) {
-		const base64 = dataUrl.split(',');
+		const base64 = dataUrl.split(",");
 		const data = atob(base64[1]);
-		const mime = base64[0].split(':')[1].split(';')[0];
+		const mime = base64[0].split(":")[1].split(";")[0];
 		const buf = new Uint8Array(data.length);
 		for (var i = 0; i < data.length; i++) {
 			buf[i] = data.charCodeAt(i);
@@ -304,7 +304,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		return randomShuId;
 	}
 	function setRandomColorToInputBox() {
-		const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+		const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
 		colorInputBox.value = randomColor;
 		return randomColor;
 	}
@@ -351,7 +351,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		if (animation.list.length === 0) {
 			return;
 		} else {
-			const animationData = animation.list.map(item => `${item.shuId},${item.ikiId}`).join(',');
+			const animationData = animation.list.map(item => `${item.shuId},${item.ikiId}`).join(",");
 			const color = colorInputBox.value.slice(1);
 			const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${animation.list[0].text}」を含む${animation.list.length}件のアニメーションを帯色${colorInputBox.value}で作成しました！`);
 			const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?cmd=animation&data=${animationData}&col=${color}`);
@@ -361,7 +361,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 	function tweet(tweetText, tweetUrl, viaAccount) {
 		const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&via=${viaAccount}`;
-		window.open(url, '_blank');
+		window.open(url, "_blank");
 	}
 
 	//アニメーションボタンイベント
@@ -392,22 +392,25 @@ window.addEventListener("DOMContentLoaded", () => {
 			const urlParams = new URLSearchParams(queryString);
 
 			//色
-			const initColor = "#" + urlParams.get('col') ?? "000000";
+			const initColor = "#" + urlParams.get("col") ?? "000000";
 			colorInputBox.value = initColor;
 
 			//アニメーション
-			if (urlParams.get('cmd') === 'animation' && urlParams.get('data')) {
-				const animationDatas = urlParams.get('data').split(',');
+			if (urlParams.get("cmd") === "animation" && urlParams.get("data")) {
+				const animationDatas = urlParams.get("data").split(",");
 				animation.clearList();
 				for (let i = 0; i < animationDatas.length; i += 2) {
 					animation.addList(animationDatas[i + 1], animationDatas[i], `${[...shuSelectBox.options].find(opt => opt.value === animationDatas[i])?.text} ${[...ikiSelectBox.options].find(opt => opt.value === animationDatas[i + 1])?.text}`);
+				}
+				if (urlParams.get("interval")) {
+					document.getElementById("animation-interval-range").value = urlParams.get("interval");
 				}
 				document.getElementById("animation-play-button").click();
 			}
 			//アニメーション以外の表示
 			else {
-				const initIki = urlParams.get('iki') ?? 0;
-				const initShu = urlParams.get('shu') ?? 0;
+				const initIki = urlParams.get("iki") ?? 0;
+				const initShu = urlParams.get("shu") ?? 0;
 				ikiSelectBox.value = initIki
 				shuSelectBox.value = initShu;
 				displayLEDWithCurrentSettings();
