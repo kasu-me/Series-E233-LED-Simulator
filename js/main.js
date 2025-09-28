@@ -262,7 +262,6 @@ window.addEventListener("DOMContentLoaded", () => {
 			displayLEDWithCurrentSettings(true);
 		});
 		elm.addEventListener("blur", () => {
-			console.log("unfocus");
 			const ikiText = ikiTextBox.value;
 			const shuText = shuTextBox.value;
 
