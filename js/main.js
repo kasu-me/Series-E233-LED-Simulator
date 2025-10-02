@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
+	//UAに応じた処理
 	const userAgent = navigator.userAgent;
 	const isSmartphone = /iPhone|iPod|Android/i.test(userAgent);
 	const isTablet = /iPad/.test(userAgent);
@@ -20,6 +21,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	const url = new URL(window.location.href);
 	const resourceBasePath = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
 
+	//各種定数定義
+
 	//1枚の画像に設定されている幕の数
 	const MAKU_COUNT_PER_IMAGE_IKISAKI = 100;
 	const MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL = 28;
@@ -34,6 +37,21 @@ window.addEventListener("DOMContentLoaded", () => {
 	const lastImgPageCountIki = Math.floor(maxIkiId / MAKU_COUNT_PER_IMAGE_IKISAKI);
 	const lastImgPageCountShuSmall = Math.floor(maxShuSmallId / MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL);
 	const lastImgPageCountShuLarge = Math.floor(maxShuLargeId / MAKU_COUNT_PER_IMAGE_SHUBETSU_LARGE);
+
+	//プリセット色
+	const presetColors = [
+		"",
+		"#fd952f",//0番台
+		"#22c3fb",//1000番台
+		"#bbbbbb",//2000番台
+		"#28ae2e",//3000番台
+		"#fc1c19",//5000番台
+		"#91d55a",//6000番台
+		"#1ba170",//7000番台
+		"#fecd3e",//8000番台
+	];
+
+	//定数定義ここまで
 
 	//画像読み込み
 	const images = {
@@ -295,18 +313,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	//色プリセット選択ボックス
-	//プリセット色
-	const presetColors = [
-		"",
-		"#fd952f",//0番台
-		"#22c3fb",//1000番台
-		"#bbbbbb",//2000番台
-		"#28ae2e",//3000番台
-		"#fc1c19",//5000番台
-		"#91d55a",//6000番台
-		"#1ba170",//7000番台
-		"#fecd3e",//8000番台
-	];
 	colorSelectPresetSelectBox.querySelectorAll("option").forEach((opt, index) => {
 		opt.style.backgroundColor = presetColors[index];
 	});
