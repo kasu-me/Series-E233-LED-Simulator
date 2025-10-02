@@ -1,8 +1,3 @@
-// canvas.js
-// canvas関連の処理を分離
-
-// 依存: images, colorBar, colorSelectPresetSelectBox, presetColors などはmain.jsから渡す必要あり
-
 let canvas, ctx;
 
 export function initCanvas(canvasElement) {
