@@ -1,10 +1,31 @@
+import {
+	initCanvas,
+	setFrontImage,
+	setImageToCanvas,
+	setIkisakiImg,
+	setShubetsuImg,
+	setLargeShubetsuImg,
+	setColorToDisplay,
+	clearCanvas,
+	saveCanvas,
+	getDataUrlFromCanvas,
+	dataUrlToBlob,
+	saveFromDataUrl
+} from "./canvas.js";
+
 window.addEventListener("DOMContentLoaded", () => {
-	const isSmartphone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-	if (isSmartphone) {
+	//UAに応じた処理
+	const userAgent = navigator.userAgent;
+	const isSmartphone = /iPhone|iPod|Android/i.test(userAgent);
+	const isTablet = /iPad/.test(userAgent);
+	if (isSmartphone && !isTablet) {
 		document.body.classList.add("access-from-smartphone");
 	}
+	if (isTablet) {
+		document.body.classList.add("access-from-tablet");
+	}
 	//SafariはshowPicker()に対応していない
-	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+	const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
 	if (isSafari) {
 		document.body.classList.add("unsupported-showpicker");
 	}
@@ -14,6 +35,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	//リソースのパスを取得
 	const url = new URL(window.location.href);
 	const resourceBasePath = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
+
+	//各種定数定義
 
 	//1枚の画像に設定されている幕の数
 	const MAKU_COUNT_PER_IMAGE_IKISAKI = 100;
@@ -29,6 +52,21 @@ window.addEventListener("DOMContentLoaded", () => {
 	const lastImgPageCountIki = Math.floor(maxIkiId / MAKU_COUNT_PER_IMAGE_IKISAKI);
 	const lastImgPageCountShuSmall = Math.floor(maxShuSmallId / MAKU_COUNT_PER_IMAGE_SHUBETSU_SMALL);
 	const lastImgPageCountShuLarge = Math.floor(maxShuLargeId / MAKU_COUNT_PER_IMAGE_SHUBETSU_LARGE);
+
+	//プリセット色
+	const presetColors = [
+		"",
+		"#fd952f",//0番台
+		"#22c3fb",//1000番台
+		"#bbbbbb",//2000番台
+		"#28ae2e",//3000番台
+		"#fc1c19",//5000番台
+		"#91d55a",//6000番台
+		"#1ba170",//7000番台
+		"#fecd3e",//8000番台
+	];
+
+	//定数定義ここまで
 
 	//画像読み込み
 	const images = {
@@ -85,14 +123,15 @@ window.addEventListener("DOMContentLoaded", () => {
 	const colorBar = document.getElementById("color-bar");
 	const shuTextBox = document.getElementById("shubetsu-textbox");
 	const ikiTextBox = document.getElementById("ikisaki-textbox");
+	const colorInputBox = document.getElementById("color-input-box");
+	const colorSelectPresetSelectBox = document.getElementById("color-select-presets");
 
 	//キャンバス設定
 	const canvas = document.getElementById("mainled");
 	if (!canvas || !canvas.getContext) {
 		return false;
 	}
-	const ctx = canvas.getContext("2d");
-	ctx.imageSmoothingEnabled = false;
+	initCanvas(canvas);
 
 	//LEDを表示する
 	function displayLED(ikiId, shuId, color, isFromTextBox = false) {
@@ -114,21 +153,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		//CANVAS描画
 		if (isLargeType) {
-			setLargeShubetsuImg(shuImageNumber, 0, 33 * shuImageY, 128, 32, 113, 16, 384, 96, true);
+			setLargeShubetsuImg(images, shuImageNumber, 0, 33 * shuImageY, 128, 32, 113, 16, 384, 96, true);
 		} else {
-			setShubetsuImg(shuImageNumber, 51 * shuImageY, 0, 48, 32, 113, 16, 144, 96, false);
-			setIkisakiImg(ikiImageNumber, 0, 33 * ikiImageY, 80, 32, 257, 16, 240, 96, true);
+			setShubetsuImg(images, shuImageNumber, 51 * shuImageY, 0, 48, 32, 113, 16, 144, 96, false);
+			setIkisakiImg(images, ikiImageNumber, 0, 33 * ikiImageY, 80, 32, 257, 16, 240, 96, true);
 		}
-		setColorToDisplay(color);
-
 		//ボタン要素等の状態を更新
+		setColorToDisplay(color, colorBar, colorSelectPresetSelectBox, presetColors);
 		ikiSelectBox.disabled = isLargeType;
-
 		//テキストボックス入力以外で呼ばれた場合はテキストボックスに反映
 		if (!isFromTextBox) {
-			updateTextBoxWithCurrentSettings()
+			updateTextBoxWithCurrentSettings();
 		}
-
 		//LED制御サーバにリクエストを送信
 		requestRealLEDServer(ikiSelectBox.value, shuSelectBox.value);
 	}
@@ -142,108 +178,16 @@ window.addEventListener("DOMContentLoaded", () => {
 		shuTextBox.value = shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "";
 	}
 
-	//CANVAS系
-
-	//CANVASに前景画像を設置
-	function setFrontImage() {
-		ctx.drawImage(images.front, 0, 0);
-	}
-
-	//CANVASに画像を読み込み opt=trueで最終的に前景画像も設置
-	function setImageToCanvas(imgSrc, x1, y1, x2, y2, x3, y3, x4, y4, opt) {
-		var img = new Image();
-		img.crossOrigin = "Anonymous";
-		img.src = imgSrc;
-		img.onload = function () {
-			ctx.drawImage(img, x1, y1, x2, y2, x3, y3, x4, y4);
-			if (opt) {
-				setFrontImage();
-			}
-		}
-	}
-
-	//CANVASに行先画像を表示 opt=trueで最終的に前景画像も設置
-	function setIkisakiImg(imageNumber, x1, y1, x2, y2, x3, y3, x4, y4, opt) {
-		ctx.drawImage(images.ikisaki[imageNumber], x1, y1, x2, y2, x3, y3, x4, y4);
-		if (opt) {
-			setFrontImage();
-		}
-	}
-
-	//CANVASに種別画像を表示 opt=trueで最終的に前景画像も設置
-	function setShubetsuImg(imageNumber, x1, y1, x2, y2, x3, y3, x4, y4, opt) {
-		ctx.drawImage(images.shubetsuSmall[imageNumber], x1, y1, x2, y2, x3, y3, x4, y4);
-		if (opt) {
-			setFrontImage();
-		}
-	}
-
-	//CANVASに大きな種別画像を表示 opt=trueで最終的に前景画像も設置
-	function setLargeShubetsuImg(imageNumber, x1, y1, x2, y2, x3, y3, x4, y4, opt) {
-		ctx.drawImage(images.shubetsuLarge[imageNumber], x1, y1, x2, y2, x3, y3, x4, y4);
-		if (opt) {
-			setFrontImage();
-		}
-	}
-
-	//CANVASに帯色を設定
-	function setColorToDisplay(color) {
-		ctx.fillStyle = color;
-		ctx.fillRect(0, 4, 55, 111);
-		ctx.fillRect(554, 4, 55, 111);
-		colorBar.style.background = color;
-	}
-
-	//CANVASを空にする
-	function clearCanvas() {
-		ctx.fillStyle = "rgb(68,68,68)";
-		ctx.fillRect(0, 0, 600, 300);
-	}
-
-	//CANVAS上のイメージを保存
-	function saveCanvas() {
-		const imageType = "image/png";
-		const fileName = "e233ledsimulator.png";
-		saveFromDataUrl(getDataUrlFromCanvas(imageType), fileName);
-	}
-
-	//CANVASの内容をdataURLで取得
-	function getDataUrlFromCanvas(imageType) {
-		const dataUrl = canvas.toDataURL(imageType);
-		return dataUrl;
-	}
-
-	// dataURLをBlobデータに変換
-	function dataUrlToBlob(dataUrl) {
-		const base64 = dataUrl.split(",");
-		const data = atob(base64[1]);
-		const mime = base64[0].split(":")[1].split(";")[0];
-		const buf = new Uint8Array(data.length);
-		for (var i = 0; i < data.length; i++) {
-			buf[i] = data.charCodeAt(i);
-		}
-		var blob = new Blob([buf], {
-			type: mime
-		});
-		return blob;
-	}
-
-	// 画像のダウンロード
-	function saveFromDataUrl(dataUrl, fileName) {
-		const a = document.createElement("a");
-		a.href = dataUrl;
-		a.download = fileName;
-		a.click();
-	}
-
-	//CANVAS系ここまで
-
 	//アニメーション初期化
 	const tweetAnimationButton = document.getElementById("tweet-animation-button");
 	const animation = new Animation(document.getElementById("animation-list-container"), document.getElementById("animation-controls"), tweetAnimationButton);
 
+	// 保存ボタン等で使われるsaveCanvasのラッパー
+	function handleSaveCanvas() {
+		saveCanvas(getDataUrlFromCanvas, saveFromDataUrl);
+	}
+
 	//各種コントロール要素イベント付与
-	const colorInputBox = document.getElementById("color-select-box");
 
 	//コントローライベント
 	//セレクトボックス
@@ -287,9 +231,19 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
+	//色プリセット選択ボックス
+	colorSelectPresetSelectBox.querySelectorAll("option").forEach((opt, index) => {
+		opt.style.backgroundColor = presetColors[index];
+	});
+	colorSelectPresetSelectBox.addEventListener("change", () => {
+		const selectedColor = presetColors[colorSelectPresetSelectBox.selectedIndex];
+		colorInputBox.value = selectedColor;
+		displayLEDWithCurrentSettings();
+	});
+
 	//画像保存ボタンイベント
 	document.getElementById("save-image-button").addEventListener("click", () => {
-		saveCanvas();
+		saveCanvas(getDataUrlFromCanvas, saveFromDataUrl);
 	});
 
 	//ランダムボタンイベント

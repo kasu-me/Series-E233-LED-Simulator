@@ -133,8 +133,15 @@ p:last-child {
 				display: flex;
 				gap: 1.0rem;
 
-				& #color-select-box {
-					height: 10.1rem;
+				& select {
+					display: block;
+					height: calc(50% - 1.0rem);
+					width: 10rem;
+					margin-bottom: 1.0rem;
+				}
+
+				& #color-input-box {
+					height: 50%;
 					width: 10rem;
 					cursor: pointer;
 				}
@@ -306,7 +313,7 @@ div#file-time {
 					}
 				}
 
-				& .led-control-select-box:not(#color-select-box) {
+				& .led-control-select-box:not(#color-input-box) {
 					font-size: 5vw;
 					width: 100%;
 					margin-bottom: 1.0em;
@@ -315,15 +322,24 @@ div#file-time {
 				&#color-container {
 					margin-top: 2.5rem;
 					margin-bottom: 10vw;
+					width: 100%;
 
-					& #color-select-box,
+					&>div,
 					& #no-color-button {
-						width: 50%;
 						font-size: 4vw;
+						width: 50%;
 					}
 
-					& #color-select-box {
-						height: 2em;
+					&>div>select,
+					&>div>#color-input-box {
+						width: 100%;
+						width: 100%;
+						height: calc(50% - 0.2rem);
+						margin-bottom: 0.1rem;
+					}
+
+					&>div>select {
+						background-color: #fff;
 					}
 				}
 			}
@@ -378,7 +394,7 @@ div#file-time {
 						}
 					}
 
-					& .led-control-select-box:not(#color-select-box) {
+					& .led-control-select-box:not(#color-input-box) {
 						visibility: hidden;
 						height: 0;
 						margin: 0;

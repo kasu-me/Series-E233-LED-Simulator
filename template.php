@@ -39,12 +39,13 @@
 		<meta property="og:image" content="https://<?php echo $_SERVER["HTTP_HOST"] ?>/e233/resources/img/card.php?<?php echo $queryString; ?>" />
 	<?php endif; ?>
 	<meta charset="utf-8">
-	<title>E233系LEDシミュレータ ver.3.0 on Raspberry Pi</title>
+	<title>E233系LEDシミュレータ ver.3.0</title>
 	<link rel="stylesheet" href="/e233/css/fonts/font.css?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/css/fonts/font.css'); ?>">
 	<link rel="stylesheet" href="/e233/css/main.css?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/css/main.css'); ?>">
-	<script src="/e233/js/main.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/main.js'); ?>"></script>
-	<script src="/e233/js/animation.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/animation.js'); ?>"></script>	
-	<script src="/e233/js/network.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/network.js'); ?>"></script>	
+	<script type="module" src="/e233/js/main.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/main.js'); ?>"></script>
+	<script src="/e233/js/animation.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/animation.js'); ?>"></script>  
+	<script src="/e233/js/network.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/network.js'); ?>"></script>  
+	<script type="module" src="/e233/js/canvas.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/canvas.js'); ?>"></script>
 </head>
 <body>
 	<DIV id="img-area" class="img-area">
@@ -107,7 +108,19 @@
 				}
 			}
 			echo '</select>';
-			?></div><div id="color-container"><input type="color" id="color-select-box" value="#000000" title="帯色選択" class="led-control-box"><button id="no-color-button">帯なし</button></div>
+			?></div><div id="color-container">
+				<div><select id="color-select-presets" title="帯色を選択">
+					<option>---帯色を選択---</option>
+					<option value="0">0番台</option>
+					<option value="1000">1000番台</option>
+					<option value="2000">2000番台</option>
+					<option value="3000">3000番台</option>
+					<option value="5000">5000番台</option>
+					<option value="6000">6000番台</option>
+					<option value="7000">7000番台</option>
+					<option value="8000">8000番台</option>
+				</select><input type="color" id="color-input-box" value="#000000" title="帯色選択" class="led-control-box"></div>
+				<button id="no-color-button">帯なし</button></div>
 		</DIV>
 		<DIV id="" class="button-area">
 			<BUTTON class="large-button" id="random-shubetsu-button"><img src="/e233/resources/img/buttons/rnd_shubetsu.png">ランダム種別</BUTTON><BUTTON class="large-button" id="random-ikisaki-button"><img src="/e233/resources/img/buttons/rnd_ikisaki.png">ランダム行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-button"><img src="/e233/resources/img/buttons/rnd_shubetsuandikisaki.png">ランダム種別+行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-color-button"><img src="/e233/resources/img/buttons/rnd_all.png">ランダム種別+行先+帯色</BUTTON><BUTTON class="large-button" id="random-color-button"><img src="/e233/resources/img/buttons/rnd_clr.png">ランダム帯色</BUTTON>
