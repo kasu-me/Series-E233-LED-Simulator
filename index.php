@@ -118,7 +118,7 @@
 					<option value="6000">6000番台</option>
 					<option value="7000">7000番台</option>
 					<option value="8000">8000番台</option>
-				</select><input type="color" id="color-select-box" value="#000000" title="帯色選択" class="led-control-box"></div>
+				</select><input type="color" id="color-input-box" value="#000000" title="帯色選択" class="led-control-box"></div>
 				<button id="no-color-button">帯なし</button></div>
 		</DIV>
 		<DIV id="" class="button-area">

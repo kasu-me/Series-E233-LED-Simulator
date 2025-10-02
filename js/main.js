@@ -90,6 +90,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	const colorBar = document.getElementById("color-bar");
 	const shuTextBox = document.getElementById("shubetsu-textbox");
 	const ikiTextBox = document.getElementById("ikisaki-textbox");
+	const colorInputBox = document.getElementById("color-input-box");
 	const colorSelectPresetSelectBox = document.getElementById("color-select-presets");
 
 	//キャンバス設定
@@ -250,7 +251,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	const animation = new Animation(document.getElementById("animation-list-container"), document.getElementById("animation-controls"), tweetAnimationButton);
 
 	//各種コントロール要素イベント付与
-	const colorInputBox = document.getElementById("color-select-box");
 
 	//コントローライベント
 	//セレクトボックス

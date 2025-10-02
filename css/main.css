@@ -140,7 +140,7 @@ p:last-child {
 					margin-bottom: 1.0rem;
 				}
 
-				& #color-select-box {
+				& #color-input-box {
 					height: 50%;
 					width: 10rem;
 					cursor: pointer;
@@ -313,7 +313,7 @@ div#file-time {
 					}
 				}
 
-				& .led-control-select-box:not(#color-select-box) {
+				& .led-control-select-box:not(#color-input-box) {
 					font-size: 5vw;
 					width: 100%;
 					margin-bottom: 1.0em;
@@ -331,7 +331,7 @@ div#file-time {
 					}
 
 					&>div>select,
-					&>div>#color-select-box {
+					&>div>#color-input-box {
 						width: 100%;
 						width: 100%;
 						height: calc(50% - 0.2rem);
@@ -394,7 +394,7 @@ div#file-time {
 						}
 					}
 
-					& .led-control-select-box:not(#color-select-box) {
+					& .led-control-select-box:not(#color-input-box) {
 						visibility: hidden;
 						height: 0;
 						margin: 0;
