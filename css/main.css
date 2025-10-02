@@ -134,7 +134,7 @@ p:last-child {
 				gap: 1.0rem;
 
 				& #color-select-box {
-					height: 10.1rem;
+					height: auto;
 					width: 10rem;
 					cursor: pointer;
 				}
@@ -320,10 +320,6 @@ div#file-time {
 					& #no-color-button {
 						width: 50%;
 						font-size: 4vw;
-					}
-
-					& #color-select-box {
-						height: 2em;
 					}
 				}
 			}

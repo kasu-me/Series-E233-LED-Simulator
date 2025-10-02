@@ -1,10 +1,15 @@
 window.addEventListener("DOMContentLoaded", () => {
-	const isSmartphone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-	if (isSmartphone) {
+	const userAgent = navigator.userAgent;
+	const isSmartphone = /iPhone|iPod|Android/i.test(userAgent);
+	const isTablet = /iPad/.test(userAgent);
+	if (isSmartphone && !isTablet) {
 		document.body.classList.add("access-from-smartphone");
 	}
+	if (isTablet) {
+		document.body.classList.add("access-from-tablet");
+	}
 	//SafariはshowPicker()に対応していない
-	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+	const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
 	if (isSafari) {
 		document.body.classList.add("unsupported-showpicker");
 	}
