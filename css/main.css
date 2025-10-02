@@ -333,6 +333,9 @@ div#file-time {
 					&>div>select,
 					&>div>#color-select-box {
 						width: 100%;
+						width: 100%;
+						height: calc(50% - 0.2rem);
+						margin-bottom: 0.1rem;
 					}
 
 					&>div>select {
