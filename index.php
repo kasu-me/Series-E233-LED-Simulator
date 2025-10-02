@@ -107,7 +107,19 @@
 				}
 			}
 			echo '</select>';
-			?></div><div id="color-container"><input type="color" id="color-select-box" value="#000000" title="帯色選択" class="led-control-box"><button id="no-color-button">帯なし</button></div>
+			?></div><div id="color-container">
+				<div><select id="color-select-presets" title="帯色を選択">
+					<option>---帯色を選択---</option>
+					<option value="0">0番台</option>
+					<option value="1000">1000番台</option>
+					<option value="2000">2000番台</option>
+					<option value="3000">3000番台</option>
+					<option value="5000">5000番台</option>
+					<option value="6000">6000番台</option>
+					<option value="7000">7000番台</option>
+					<option value="8000">8000番台</option>
+				</select><input type="color" id="color-select-box" value="#000000" title="帯色選択" class="led-control-box"></div>
+				<button id="no-color-button">帯なし</button></div>
 		</DIV>
 		<DIV id="" class="button-area">
 			<BUTTON class="large-button" id="random-shubetsu-button"><img src="/resources/img/buttons/rnd_shubetsu.png">ランダム種別</BUTTON><BUTTON class="large-button" id="random-ikisaki-button"><img src="/resources/img/buttons/rnd_ikisaki.png">ランダム行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-button"><img src="/resources/img/buttons/rnd_shubetsuandikisaki.png">ランダム種別+行先</BUTTON><BUTTON class="large-button" id="random-shubetsu-ikisaki-color-button"><img src="/resources/img/buttons/rnd_all.png">ランダム種別+行先+帯色</BUTTON><BUTTON class="large-button" id="random-color-button"><img src="/resources/img/buttons/rnd_clr.png">ランダム帯色</BUTTON>

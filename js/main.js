@@ -90,6 +90,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	const colorBar = document.getElementById("color-bar");
 	const shuTextBox = document.getElementById("shubetsu-textbox");
 	const ikiTextBox = document.getElementById("ikisaki-textbox");
+	const colorSelectPresetSelectBox = document.getElementById("color-select-presets");
 
 	//キャンバス設定
 	const canvas = document.getElementById("mainled");
@@ -197,6 +198,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		ctx.fillRect(0, 4, 55, 111);
 		ctx.fillRect(554, 4, 55, 111);
 		colorBar.style.background = color;
+		colorSelectPresetSelectBox.selectedIndex = (presetColors.filter(preset => preset == color).length > 0) ? presetColors.indexOf(color) : 0;
 	}
 
 	//CANVASを空にする
@@ -290,6 +292,28 @@ window.addEventListener("DOMContentLoaded", () => {
 			selectBox.focus();
 			selectBox.click();
 		});
+	});
+
+	//色プリセット選択ボックス
+	//プリセット色
+	const presetColors = [
+		"",
+		"#fd952f",//0番台
+		"#22c3fb",//1000番台
+		"#bbbbbb",//2000番台
+		"#28ae2e",//3000番台
+		"#fc1c19",//5000番台
+		"#91d55a",//6000番台
+		"#1ba170",//7000番台
+		"#fecd3e",//8000番台
+	];
+	colorSelectPresetSelectBox.querySelectorAll("option").forEach((opt, index) => {
+		opt.style.backgroundColor = presetColors[index];
+	});
+	colorSelectPresetSelectBox.addEventListener("change", () => {
+		const selectedColor = presetColors[colorSelectPresetSelectBox.selectedIndex];
+		colorInputBox.value = selectedColor;
+		setColorToDisplay(selectedColor);
 	});
 
 	//画像保存ボタンイベント
