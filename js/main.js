@@ -377,7 +377,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		console.log("===============================================");
 		console.log("E233系側面LEDシミュレーター 3");
 		console.log("SeriesE233 LED Simulator 3");
-		console.log("version 3.0.4.0 / Last Updated : 2025/09/28");
+		console.log("version 3.0.5.0 / Last Updated : 2025/10/06");
 		console.log("Made by M_Kasumi (Twitter:@Omiya_Shinobu)");
 		console.log("===============================================");
 	});
