@@ -32,7 +32,7 @@
 	<meta name="twitter:site" content="@Omiya_Shinobu" />
 	<meta property="og:url" content="<?php echo (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 	<meta property="og:title" content="E233系LEDシミュレータ" />
-	<meta property="og:description" content="ブラウザ上でE233系(一部小田急4000形と相鉄11000系と都営10-300形と都営5500形としなの鉄道SR1系)の行先表示器を再現することができるシミュレータ。" />
+	<meta property="og:description" content="ブラウザ上でE233系(一部小田急4000形と相鉄11000系と都営10-300形と都営5500形と東臨71-000形としなの鉄道SR1系)の行先表示器を再現することができるシミュレータ。" />
 	<?php if ($queryString == "" ) : ?>
 		<meta property="og:image" content="https://<?php echo $_SERVER["HTTP_HOST"] ?>/resources/img/twtr.png" />
 	<?php else : ?>
@@ -142,8 +142,8 @@
 			</DIV>
 			<DIV id="artcle-area">
 				<!--<A HREF="https://twitter.com/Omiya_Shinobu" target="_blank">これをつくったひとのTwitter</A> - バグや不具合の報告などもこちらまで。-->
-				<p><SPAN style="color:#ff0000;"><B>LAST UPDATED : 2025/09/24</B></SPAN> : 大規模修正。内部構造をゼロベースで刷新。動作に変更はありません。</p>
-				<p><B>★E233系LEDシミュレータって何？</B> …JR東日本E233系、都営10-300形、相鉄11000系、小田急4000形、都営5500形、しなの鉄道SR1系の側面方向表示器のLEDをブラウザ上で再現できます。作成した表示は、画像として保存したりURLで共有したりできます。スマホでも動きますが、推奨はPCのGoogle Chrome。</p>
+				<p><SPAN style="color:#ff0000;"><B>LAST UPDATED : 2025/10/06</B></SPAN> : 東京臨海高速鉄道71-000形の種別表示を追加。</p>
+				<p><B>★E233系LEDシミュレータって何？</B> …JR東日本E233系、都営10-300形、相鉄11000系、小田急4000形、都営5500形、東臨71-000形、しなの鉄道SR1系の側面方向表示器のLEDをブラウザ上で再現できます。作成した表示は、画像として保存したりURLで共有したりできます。スマホでも動きますが、推奨はPCのGoogle Chrome。</p>
 				<p>☆少ない資料から手打ちなので、間違いがあるかも。その際はご容赦ください。<br>☆一部、他表示からの推測や架空の表示を含みます。<br>☆本シミュレータで生成した画像はご自由にお使いください。(本シミュレータは実在する鉄道車両のLED表示器の挙動を再現したものですので、そもそも私が著作権を主張することはできないと考えております。)</p>
 			</DIV>
 		</div>
