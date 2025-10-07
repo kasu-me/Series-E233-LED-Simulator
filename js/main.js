@@ -135,6 +135,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//LEDを表示する
 	function displayLED(ikiId, shuId, color, isFromTextBox = false) {
+		const [rawIkiId, rawShuId] = [ikiId, shuId];
+
 		//キャンバスを空にする
 		clearCanvas();
 
@@ -166,7 +168,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			updateTextBoxWithCurrentSettings();
 		}
 		//LED制御サーバにリクエストを送信
-		requestRealLEDServer(ikiId, shuId);
+		requestRealLEDServer(rawIkiId, rawShuId);
 	}
 	//セレクトボックスの値からLEDを表示
 	function displayLEDWithCurrentSettings(isFromTextBox = false) {
@@ -308,7 +310,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			const animationData = animation.list.map(item => `${item.shuId},${item.ikiId}`).join(",");
 			const interval = document.getElementById("animation-interval-range").value;
 			const color = colorInputBox.value.slice(1);
-			const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${animation.list[0].text}」を含む${animation.list.length}件のアニメーションを帯色${colorInputBox.value}で作成しました！`);
+			const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${animation.list[0].text}」ほか${animation.list.length}件を含むアニメーションを帯色${colorInputBox.value}で作成しました！`);
 			const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?cmd=animation&data=${animationData}&interval=${interval}&col=${color}`);
 			const viaAccount = "Omiya_Shinobu";
 			tweet(tweetText, tweetUrl, viaAccount);
