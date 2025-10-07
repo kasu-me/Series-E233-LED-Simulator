@@ -368,7 +368,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				const initShu = urlParams.get("shu") ?? 0;
 				ikiSelectBox.value = initIki
 				shuSelectBox.value = initShu;
-				displayLEDWithCurrentSettings();
+				displayLED(initIki, initShu, initColor);
 			}
 		} else {
 			displayLEDWithCurrentSettings();
