@@ -218,7 +218,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				shuTextBox.value = "";
 			}
 
-			updateTextBoxWithCurrentSettings()
+			updateTextBoxWithCurrentSettings();
 		});
 	});
 	//プルダウン(スマホ用)
