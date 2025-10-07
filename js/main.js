@@ -174,8 +174,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 	//セレクトボックスの値からテキストボックスの値を更新
 	function updateTextBoxWithCurrentSettings() {
-		ikiTextBox.value = ikiSelectBox.selectedIndex != 0 ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "";
-		shuTextBox.value = shuSelectBox.selectedIndex != 0 ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "";
+		ikiTextBox.value = (ikiSelectBox.selectedIndex != 0 && ikiSelectBox.selectedIndex != -1) ? ikiSelectBox.options[ikiSelectBox.selectedIndex].text : "";
+		shuTextBox.value = (shuSelectBox.selectedIndex != 0 && shuSelectBox.selectedIndex != -1) ? shuSelectBox.options[shuSelectBox.selectedIndex].text : "";
 	}
 
 	//アニメーション初期化
@@ -218,7 +218,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				shuTextBox.value = "";
 			}
 
-			updateTextBoxWithCurrentSettings()
+			updateTextBoxWithCurrentSettings();
 		});
 	});
 	//プルダウン(スマホ用)
@@ -368,7 +368,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				const initShu = urlParams.get("shu") ?? 0;
 				ikiSelectBox.value = initIki
 				shuSelectBox.value = initShu;
-				displayLEDWithCurrentSettings();
+				displayLED(initIki, initShu, initColor);
 			}
 		} else {
 			displayLEDWithCurrentSettings();
