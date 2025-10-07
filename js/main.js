@@ -347,7 +347,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			const urlParams = new URLSearchParams(queryString);
 
 			//色
-			const initColor = "#" + urlParams.get("col") ?? "000000";
+			const initColor = "#" + (urlParams.get("col") ?? "000000");
 			colorInputBox.value = initColor;
 
 			//アニメーション
