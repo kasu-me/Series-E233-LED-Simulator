@@ -166,7 +166,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			updateTextBoxWithCurrentSettings();
 		}
 		//LED制御サーバにリクエストを送信
-		requestRealLEDServer(ikiSelectBox.value, shuSelectBox.value);
+		requestRealLEDServer(ikiId, shuId);
 	}
 	//セレクトボックスの値からLEDを表示
 	function displayLEDWithCurrentSettings(isFromTextBox = false) {
