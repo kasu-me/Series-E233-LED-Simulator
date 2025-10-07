@@ -135,6 +135,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//LEDを表示する
 	function displayLED(ikiId, shuId, color, isFromTextBox = false) {
+		const [rawIkiId, rawShuId] = [ikiId, shuId];
+
 		//キャンバスを空にする
 		clearCanvas();
 
@@ -166,7 +168,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			updateTextBoxWithCurrentSettings();
 		}
 		//LED制御サーバにリクエストを送信
-		requestRealLEDServer(ikiId, shuId);
+		requestRealLEDServer(rawIkiId, rawShuId);
 	}
 	//セレクトボックスの値からLEDを表示
 	function displayLEDWithCurrentSettings(isFromTextBox = false) {
