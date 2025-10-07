@@ -47,7 +47,7 @@
 	<script src="/e233/js/network.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/network.js'); ?>"></script>  
 	<script type="module" src="/e233/js/canvas.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/canvas.js'); ?>"></script>
 </head>
-<body>
+<body class="loading">
 	<DIV id="img-area" class="img-area">
 		<CANVAS id="mainled" width="609" height="300"></CANVAS>
 	</DIV>
