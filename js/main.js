@@ -374,6 +374,9 @@ window.addEventListener("DOMContentLoaded", () => {
 			displayLEDWithCurrentSettings();
 		}
 
+		//ローディング画面の解除
+		document.body.classList.remove("loading");
+
 		console.log("===============================================");
 		console.log("E233系側面LEDシミュレーター 3");
 		console.log("SeriesE233 LED Simulator 3");
