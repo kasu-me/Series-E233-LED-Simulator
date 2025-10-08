@@ -75,12 +75,17 @@ window.addEventListener("DOMContentLoaded", () => {
 		"ikisaki": [],
 		"front": new Image()
 	};
-	const imageLoadPromises = [];
+
+	//コンテンツ読み込みPromise配列
+	const contentLoadPromises = [];
+
+	//フォント読み込み
+	contentLoadPromises.push(document.fonts.ready);
 
 	//前景画像読み込み
 	images.front.crossOrigin = "Anonymous";
 	images.front.src = `${resourceBasePath}resources/img/front_b.png`;
-	imageLoadPromises.push(new Promise((resolve) => {
+	contentLoadPromises.push(new Promise((resolve) => {
 		images.front.onload = resolve;
 	}));
 
@@ -90,7 +95,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		images.ikisaki.push(img);
 		img.crossOrigin = "Anonymous";
 		img.src = `${resourceBasePath}resources/led/ledimgA${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
-		imageLoadPromises.push(new Promise((resolve) => {
+		contentLoadPromises.push(new Promise((resolve) => {
 			img.onload = resolve;
 		}));
 	}
@@ -101,7 +106,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		images.shubetsuSmall.push(img);
 		img.crossOrigin = "Anonymous";
 		img.src = `${resourceBasePath}resources/led/ledtypeS${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
-		imageLoadPromises.push(new Promise((resolve) => {
+		contentLoadPromises.push(new Promise((resolve) => {
 			img.onload = resolve;
 		}));
 	}
@@ -112,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		images.shubetsuLarge.push(img);
 		img.crossOrigin = "Anonymous";
 		img.src = `${resourceBasePath}resources/led/ledtypeA${i.toString().padStart(3, "0")}.png?version=${imageVersion}`;
-		imageLoadPromises.push(new Promise((resolve) => {
+		contentLoadPromises.push(new Promise((resolve) => {
 			img.onload = resolve;
 		}));
 	}
@@ -342,7 +347,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	//各種コントロール要素イベント付与ここまで
 
 	//画像全ての読み込みが終わったら初期表示
-	Promise.all(imageLoadPromises).then(() => {
+	Promise.all(contentLoadPromises).then(() => {
 		const queryString = window.location.search;
 		//クエリパラメータが無ければデフォルト表示、あれば指定された内容で表示
 		if (queryString) {
@@ -376,8 +381,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			displayLEDWithCurrentSettings();
 		}
 
-		//ローディング画面の解除
-		document.body.classList.remove("loading");
+		// 画面表示
+		window.dispatchEvent(new Event("readyToDisplay"));
 
 		console.log("===============================================");
 		console.log("E233系側面LEDシミュレーター 3");
@@ -387,4 +392,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		console.log("===============================================");
 	});
 
+});
+
+window.addEventListener("readyToDisplay", () => {
+	document.body.classList.remove("loading");
 });
