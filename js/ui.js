@@ -131,7 +131,7 @@ export function setEventsToElements() {
 		const shuId = shuSelectBox.value;
 		const color = colorInputBox.value.slice(1);
 		const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${shuSelectBox.options[shuSelectBox.selectedIndex].text} ${ikiSelectBox.options[ikiSelectBox.selectedIndex].text}」を帯色${colorInputBox.value}で表示しました！`);
-		const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?shu=${shuId}&iki=${ikiId}&col=${color}`);
+		const tweetUrl = encodeURIComponent(`https://led.e233.app/?shu=${shuId}&iki=${ikiId}&col=${color}`);
 		const viaAccount = "Omiya_Shinobu";
 		tweet(tweetText, tweetUrl, viaAccount);
 	});
@@ -143,7 +143,7 @@ export function setEventsToElements() {
 			const interval = document.getElementById("animation-interval-range").value;
 			const color = colorInputBox.value.slice(1);
 			const tweetText = encodeURIComponent(`E233系側面LEDシミュレータで「${animation.list[0].text}」ほか${animation.list.length}件を含むアニメーションを帯色${colorInputBox.value}で作成しました！`);
-			const tweetUrl = encodeURIComponent(`https://e233.kasu.me/?cmd=animation&data=${animationData}&interval=${interval}&col=${color}`);
+			const tweetUrl = encodeURIComponent(`https://led.e233.app/?cmd=animation&data=${animationData}&interval=${interval}&col=${color}`);
 			const viaAccount = "Omiya_Shinobu";
 			tweet(tweetText, tweetUrl, viaAccount);
 		}
