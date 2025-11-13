@@ -14,9 +14,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 	//SafariはshowPicker()に対応していない
 	const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
-	if (isSafari) {
-		document.body.classList.add("unsupported-showpicker");
-	}
+	//if (isSafari) {
+	document.body.classList.add("unsupported-showpicker");
+	//}
 
 	//キャッシュ対策用のバージョン文字列を取得
 	const imageVersion = document.getElementById("file-time").innerText;
@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		"#09a5ff",//1000番台
 		"#bbbbbb",//2000番台
 		"#28ae2e",//3000番台
-		"#fc1c19",//5000番台
+		"#ff002b",//5000番台
 		"#77ca37",//6000番台
 		"#119b68",//7000番台
 		"#ffc105",//8000番台
