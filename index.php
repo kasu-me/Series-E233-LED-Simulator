@@ -42,7 +42,7 @@
 	<title>E233系LEDシミュレータ ver.3.0</title>
 	<link rel="stylesheet" href="/css/fonts/font.css?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/css/fonts/font.css'); ?>">
 	<link rel="stylesheet" href="/css/main.css?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/css/main.css'); ?>">
-	<script type="module" src="/js/main.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/main.js'); ?>"></script>
+	<script type="module" src="/js/main.js.php?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/main.js.php'); ?>"></script>
 	<script src="/js/animation.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/animation.js'); ?>"></script>  
 	<script src="/js/network.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/network.js'); ?>"></script>  
 	<script type="module" src="/js/canvas.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/canvas.js'); ?>"></script>

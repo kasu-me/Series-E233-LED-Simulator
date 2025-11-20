@@ -1,6 +1,3 @@
-import * as canvasUtil from "./canvas.js";
-import * as uiUtil from "./ui.js";
-
 window.addEventListener("DOMContentLoaded", () => {
 	//UAに応じた処理
 	const userAgent = navigator.userAgent;
