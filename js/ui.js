@@ -59,6 +59,7 @@ export function setEventsToElements() {
 	document.querySelectorAll(".led-control-input-pull-down").forEach(elm => {
 		elm.addEventListener("click", () => {
 			const selectBox = elm.parentElement.parentElement.querySelector(".led-control-select-box")
+			selectBox.size = "";
 			selectBox.showPicker();
 			selectBox.focus();
 			selectBox.click();

@@ -1,6 +1,3 @@
-import * as canvasUtil from "./canvas.js";
-import * as uiUtil from "./ui.js";
-
 window.addEventListener("DOMContentLoaded", () => {
 	//UAに応じた処理
 	const userAgent = navigator.userAgent;
@@ -14,9 +11,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 	//SafariはshowPicker()に対応していない
 	const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
-	//if (isSafari) {
-	document.body.classList.add("unsupported-showpicker");
-	//}
+	if (isSafari) {
+		document.body.classList.add("unsupported-showpicker");
+	}
 
 	//キャッシュ対策用のバージョン文字列を取得
 	const imageVersion = document.getElementById("file-time").innerText;

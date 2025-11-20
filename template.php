@@ -42,11 +42,9 @@
 	<title>E233系LEDシミュレータ ver.3.0</title>
 	<link rel="stylesheet" href="/e233/css/fonts/font.css?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/css/fonts/font.css'); ?>">
 	<link rel="stylesheet" href="/e233/css/main.css?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/css/main.css'); ?>">
-	<script type="module" src="/e233/js/main.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/main.js'); ?>"></script>
+	<script type="module" src="/e233/js/main.js.php?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/main.js.php'); ?>"></script>
 	<script src="/e233/js/animation.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/animation.js'); ?>"></script>  
 	<script src="/e233/js/network.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/network.js'); ?>"></script>  
-	<script type="module" src="/e233/js/canvas.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/canvas.js'); ?>"></script>
-	<script type="module" src="/e233/js/ui.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/e233/js/ui.js'); ?>"></script>
 </head>
 <body class="loading">
 	<DIV id="img-area" class="img-area">
