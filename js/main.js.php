@@ -5,5 +5,5 @@ import * as canvasUtil from "./canvas.js?var=<?php echo filemtime($_SERVER['DOCU
 import * as uiUtil from "./ui.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/ui.js'); ?>";
 
 <?php
-	echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/js/main.js');
+	echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/e233/js/main.js');
 ?>
