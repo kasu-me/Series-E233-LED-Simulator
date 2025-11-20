@@ -45,8 +45,6 @@
 	<script type="module" src="/js/main.js.php?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/main.js.php'); ?>"></script>
 	<script src="/js/animation.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/animation.js'); ?>"></script>  
 	<script src="/js/network.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/network.js'); ?>"></script>  
-	<script type="module" src="/js/canvas.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/canvas.js'); ?>"></script>
-	<script type="module" src="/js/ui.js?var=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/js/ui.js'); ?>"></script>
 </head>
 <body class="loading">
 	<DIV id="img-area" class="img-area">
